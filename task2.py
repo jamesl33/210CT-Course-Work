@@ -44,6 +44,12 @@ class lorry:
 		self.__load_composition = 0
 		self.__cargo = {} # cargo is a dictionary {material name: amount}
 
+	def get_cargo(self):
+		return self.__cargo
+
+	def get_composition(self):
+		return self.__load_composition
+
 	def current_cargo_weight(self):
 		""" return current weight of cargo in lorry; uses 'self.__cargo' and adds up amounts of each material into a total value """
 		weight = 0
@@ -85,27 +91,43 @@ class lorry:
 		info = info +'\n'
 		return info
 
-################# Start of Testing #################
+################# Unit Test #################
 
-# Testing material objects
-gold = material('Gold', 4, 100)
-copper = material('Copper', 7, 65)
-plastic = material('Plastic', 15, 50)
-diamond = material('diamond', 1, 1000)
-ruby = material('Ruby', 2, 500)
+import unittest
 
-# Testing materials to be passed to pickup_delivery method
-materials = [gold, plastic, copper]
-additionalMaterials = [gold, plastic, copper, diamond, ruby]
+class UnitTest(unittest.TestCase):
+	def test_labsheet(self):
+		known_correct_values = {"Gold": 4, "Copper": 6}
 
-# Testing lorry object
-labsheetLorry = lorry(10) # create a lorry whose max_load capacity is 10kg
-labsheetLorry.pickup_deliviery(materials) # load the lorry to the max level
-print(labsheetLorry) # display the lorrys load composition and cargo
+		gold = material('Gold', 4, 100)
+		copper = material('Copper', 7, 65)
+		plastic = material('Plastic', 15, 50)
 
-# Another testing object
-additionalMaterialsLorry = lorry(15) # create a lorry whose max_load capacity is 10kg
-additionalMaterialsLorry.pickup_deliviery(additionalMaterials) # load the lorry to the max level
-print(additionalMaterialsLorry) # display the lorrys load composition and cargo
+		materials = [gold, plastic, copper]
+		lorry1 = lorry(10)
+		lorry1.pickup_deliviery(materials)
 
-################# End of Testing #################
+		self.assertTrue(lorry1.get_cargo() == known_correct_values)
+		self.assertTrue(lorry1.get_composition() == 790)
+
+	def test_extra(self):
+		known_correct_values = {"Ruby": 2, "Copper": 7, "Diamond": 1, "Plastic": 1, "Gold": 4}
+
+		gold = material('Gold', 4, 100)
+		copper = material('Copper', 7, 65)
+		plastic = material('Plastic', 15, 50)
+		diamond = material('Diamond', 1, 1000)
+		ruby = material('Ruby', 2, 500)
+
+		materials = [gold, plastic, copper, diamond, ruby]
+
+		lorry1 = lorry(15)
+		lorry1.pickup_deliviery(materials)
+
+		self.assertTrue(lorry1.get_cargo() == known_correct_values)
+		self.assertTrue(lorry1.get_composition() == 2905)
+
+if __name__ == '__main__':
+    unittest.main()
+
+################# Unit Test #################
