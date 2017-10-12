@@ -18,8 +18,22 @@ def testIfDivides(a, b):
 		return False
 	return True
 
-# Test input cases
-test_cases = [(6, 9), (6,27), (20, 10000), (20, 1000000)]
-# Testing loop using inputs from worksheet
-for i in test_cases:
-	print(testIfDivides(i[0], i[1]))
+################# Unit Test #################
+
+import unittest
+
+class UnitTest(unittest.TestCase):
+	def test_correct(self):
+		known_correct_values = [(6, 9), (20, 10000)]
+		for a, b in known_correct_values:
+			self.assertTrue(testIfDivides(a, b))
+
+	def test_false(self):
+		known_wrong_values = [(6,27), (20, 1000000)]
+		for a, b in known_wrong_values:
+			self.assertFalse(testIfDivides(a,b))
+
+if __name__ == '__main__':
+    unittest.main()
+
+################# Unit Test #################

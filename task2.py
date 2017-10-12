@@ -54,12 +54,11 @@ class lorry:
 	def most_expensive_material(self, materials):
 		""" finds the most expensive item in list of "material" objects """
 		cost = 0
-		for material in materials:
-			if material.get_price() > cost and material.get_quantity() > 0:
-				cost = material.get_price()
-				most_expensive = material
+		for i in range(len(materials)):
+			if (materials[i].get_price() > cost) and (materials[i].get_quantity() > 0):
+				cost = materials[i].get_price()
+				most_expensive = i
 		return most_expensive
-
 
 	def pickup_deliviery(self, materials):
 		""" 'pickup' delivery; choose the most expensive load that the lorry can load """
@@ -67,16 +66,15 @@ class lorry:
 			raise TypeError('materials: should be a list of materials')
 
 		while self.current_cargo_weight() < self.__max_load:
-			most_expensive = self.most_expensive_material(materials)
-			if most_expensive.get_name() in self.__cargo:
-				self.__cargo[most_expensive.get_name()] += 1
+			most_expensive_index = self.most_expensive_material(materials)
+			if materials[most_expensive_index].get_name() in self.__cargo:
+				self.__cargo[(materials[most_expensive_index].get_name())] += 1
+				self.__load_composition += materials[most_expensive_index].get_price()
 			else:
-				self.__cargo[most_expensive.get_name()] = 1
-				self.__load_composition += most_expensive.get_price()
+				self.__cargo[(materials[most_expensive_index].get_name())] = 1
+				self.__load_composition += materials[most_expensive_index].get_price()
 
-			for i in range(len(materials)):
-				if materials[i] == most_expensive:
-					materials[i].decriment()
+			materials[most_expensive_index].decriment()
 
 	def __str__(self):
 		""" dislays load composition and cargo when printing lorry object """
