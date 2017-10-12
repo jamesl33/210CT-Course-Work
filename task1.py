@@ -8,7 +8,7 @@ def factorial(n):
 	if n == 0:
 		return 1
 	else:
-		return n * factorial(n-1)
+		return n * factorial(n - 1)
 
 def testIfDivides(a, b):
 	if type(a) != int or type(b) != int:
@@ -17,6 +17,22 @@ def testIfDivides(a, b):
 	if factorial(a) % b:
 		return False
 	return True
+
+################# Pseudo Code #################
+
+# FACTORIAL(n)
+# 	IF n = 0
+# 		RETURN 1
+# 	ELSE
+# 		RETURN n * FACTORIAL(n - 1)
+
+# TEST-IF-DEVIDES(a, b)
+# 	IF a! MOD b = 0
+# 		RETURN true
+# 	ELSE
+# 		RETURN false
+
+################# Pseudo Code #################
 
 ################# Unit Test #################
 
