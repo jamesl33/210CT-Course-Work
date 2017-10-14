@@ -15,7 +15,9 @@ def testIfDivides(a, b):
 		raise TypeError('testIfDivides only takes integers as arguments')
 		
 	if factorial(a) % b:
+		print("\n{0} does not divide by {1}!".format(b, a))
 		return False
+	print("\n{0} divides by {1}!".format(b, a))
 	return True
 
 ################# Pseudo Code #################
