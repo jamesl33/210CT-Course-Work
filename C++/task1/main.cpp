@@ -1,6 +1,4 @@
 #include <iostream>
-#define CATCH_CONFIG_MAIN
-#include "catch.h"
 
 long factorial(long n) {
 	/*
@@ -49,7 +47,21 @@ bool test_if_divides(int a, int b) {
 
 // ################# Pseudo Code #################
 
-// ################# Unit Test #################
+// ################# Labsheet main ################# // Uncomment code inside of 'Labsheet main' when not running unit testing
+
+// int main() {
+// 	test_if_divides(6, 9);
+// 	test_if_divides(20, 10000);
+// 	test_if_divides(6, 27);
+// 	test_if_divides(20, 1000000);
+// }
+
+// ################# Labsheet main #################
+
+// ################# Unit Test ################# // Comment out code inside of 'Unit Test' when not unit testing
+
+#define CATCH_CONFIG_MAIN
+#include "catch.h"
 
 TEST_CASE("Factorials are computed", "[factorial]") {
     REQUIRE(factorial(1) == 1);
