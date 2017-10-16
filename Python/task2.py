@@ -139,7 +139,6 @@ class lorry:
 
 ################# Labsheet Test #################
 
-print()
 known_correct_values = {"Gold": 4, "Copper": 6}
 
 gold = material('Gold', 4, 100)
@@ -149,7 +148,7 @@ plastic = material('Plastic', 15, 50)
 materials = [gold, plastic, copper]
 lorry1 = lorry(10)
 lorry1.pickup_deliviery(materials)
-print(lorry1)
+print("\n{0}".format(lorry1))
 
 ################# Labsheet Test #################
 
