@@ -47,34 +47,34 @@ bool test_if_divides(int a, int b) {
 
 // ################# Pseudo Code #################
 
-// ################# Labsheet main ################# // Uncomment code inside of 'Labsheet main' when not running unit testing
+// ################# Labsheet main ################# // Comment out code inside of 'Labsheet Main' when running unit test
 
-// int main() {
-// 	test_if_divides(6, 9);
-// 	test_if_divides(20, 10000);
-// 	test_if_divides(6, 27);
-// 	test_if_divides(20, 1000000);
-// }
+int main() {
+	test_if_divides(6, 9);
+	test_if_divides(20, 10000);
+	test_if_divides(6, 27);
+	test_if_divides(20, 1000000);
+}
 
 // ################# Labsheet main #################
 
-// ################# Unit Test ################# // Comment out code inside of 'Unit Test' when not unit testing
+// ################# Unit Test ################# // Uncomment code inside of 'Unit Test' when unit testing
 
-#define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+// #define CATCH_CONFIG_MAIN
+// #include "catch.hpp"
 
-TEST_CASE("Factorials are computed", "[factorial]") {
-    REQUIRE(factorial(1) == 1);
-    REQUIRE(factorial(2) == 2);
-    REQUIRE(factorial(3) == 6);
-    REQUIRE(factorial(10) == 3628800);
-}
+// TEST_CASE("Factorials are computed", "[factorial]") {
+//     REQUIRE(factorial(1) == 1);
+//     REQUIRE(factorial(2) == 2);
+//     REQUIRE(factorial(3) == 6);
+//     REQUIRE(factorial(10) == 3628800);
+// }
 
-TEST_CASE("Test if factorial(a) % b == 0", "[test_if_divides]") {
-	REQUIRE(test_if_divides(6, 9) == 1);
-	REQUIRE(test_if_divides(20, 10000) == 1);
-	REQUIRE(test_if_divides(6, 27) == 0);
-	REQUIRE(test_if_divides(20, 1000000) == 0);
-}
+// TEST_CASE("Test if factorial(a) % b == 0", "[test_if_divides]") {
+// 	REQUIRE(test_if_divides(6, 9) == 1);
+// 	REQUIRE(test_if_divides(20, 10000) == 1);
+// 	REQUIRE(test_if_divides(6, 27) == 0);
+// 	REQUIRE(test_if_divides(20, 1000000) == 0);
+// }
 
 // ################# Unit Test #################
