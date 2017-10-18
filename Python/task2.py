@@ -131,13 +131,12 @@ class lorry:
 		for key in self.get_cargo():
 			info = info + '{0}kg of {1} and '.format(self.get_cargo()[key], key)
 		info = info[:-4]
-		info = info +'\n'
 		return info
 
 ################# Pseudo Code #################
 ################# Pseudo Code #################
 
-################# Labsheet Test #################
+################# Labsheet Main ################# Comment out code inside of 'Labsheet Main' when running unit test
 
 known_correct_values = {"Gold": 4, "Copper": 6}
 
@@ -148,47 +147,47 @@ plastic = material('Plastic', 15, 50)
 materials = [gold, plastic, copper]
 lorry1 = lorry(10)
 lorry1.pickup_deliviery(materials)
-print("\n{0}".format(lorry1))
+print(lorry1)
 
-################# Labsheet Test #################
+################# Labsheet Main #################
 
-################# Unit Test #################
+################# Unit Test ################# Uncomment code inside of 'Unit Test' when unit testing
 
-import unittest
+# import unittest
 
-class UnitTest(unittest.TestCase):
-	def test_labsheet(self):
-		known_correct_values = {"Gold": 4, "Copper": 6}
+# class UnitTest(unittest.TestCase):
+# 	def test_labsheet(self):
+# 		known_correct_values = {"Gold": 4, "Copper": 6}
 
-		gold = material('Gold', 4, 100)
-		copper = material('Copper', 7, 65)
-		plastic = material('Plastic', 15, 50)
+# 		gold = material('Gold', 4, 100)
+# 		copper = material('Copper', 7, 65)
+# 		plastic = material('Plastic', 15, 50)
 
-		materials = [gold, plastic, copper]
-		lorry1 = lorry(10)
-		lorry1.pickup_deliviery(materials)
+# 		materials = [gold, plastic, copper]
+# 		lorry1 = lorry(10)
+# 		lorry1.pickup_deliviery(materials)
 
-		self.assertEqual(lorry1.get_cargo(), known_correct_values)
-		self.assertEqual(lorry1.get_loadComposition(), 790)
+# 		self.assertEqual(lorry1.get_cargo(), known_correct_values)
+# 		self.assertEqual(lorry1.get_loadComposition(), 790)
 
-	def test_extra(self):
-		known_correct_values = {"Ruby": 2, "Copper": 7, "Diamond": 1, "Plastic": 1, "Gold": 4}
+# 	def test_extra(self):
+# 		known_correct_values = {"Ruby": 2, "Copper": 7, "Diamond": 1, "Plastic": 1, "Gold": 4}
 
-		gold = material('Gold', 4, 100)
-		copper = material('Copper', 7, 65)
-		plastic = material('Plastic', 15, 50)
-		diamond = material('Diamond', 1, 1000)
-		ruby = material('Ruby', 2, 500)
+# 		gold = material('Gold', 4, 100)
+# 		copper = material('Copper', 7, 65)
+# 		plastic = material('Plastic', 15, 50)
+# 		diamond = material('Diamond', 1, 1000)
+# 		ruby = material('Ruby', 2, 500)
 
-		materials = [gold, plastic, copper, diamond, ruby]
+# 		materials = [gold, plastic, copper, diamond, ruby]
 
-		lorry1 = lorry(15)
-		lorry1.pickup_deliviery(materials)
+# 		lorry1 = lorry(15)
+# 		lorry1.pickup_deliviery(materials)
 
-		self.assertEqual(lorry1.get_cargo(), known_correct_values)
-		self.assertEqual(lorry1.get_loadComposition(), 2905)
+# 		self.assertEqual(lorry1.get_cargo(), known_correct_values)
+# 		self.assertEqual(lorry1.get_loadComposition(), 2905)
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
 
 ################# Unit Test #################
