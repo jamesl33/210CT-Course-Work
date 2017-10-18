@@ -53,7 +53,6 @@ def testIfDivides(a, b):
 
 ################# Labsheet Main ################# Comment out code inside of 'Labsheet Main' when running unit test
 
-# Test values from the labsheet
 testValues = [(6, 9), (20, 10000), (6, 27), (20, 1000000)]
 for a, b in testValues:
     print(testIfDivides(a, b)[0])
@@ -62,21 +61,20 @@ for a, b in testValues:
 
 ################# Unit Test ################# Uncomment code inside of 'Unit Test' when unit testing
 
-# Unit Test
-import unittest
-
-class UnitTest(unittest.TestCase):
-    def test_correct(self):
-        known_correct_values = [(6, 9), (20, 10000)]
-        for a, b in known_correct_values:
-            self.assertTrue(testIfDivides(a, b)[1])
-
-    def test_false(self):
-        known_wrong_values = [(6, 27), (20, 1000000)]
-        for a, b in known_wrong_values:
-            self.assertFalse(testIfDivides(a,b)[1])
-
-if __name__ == '__main__':
-    unittest.main()
+# import unittest
+#
+# class UnitTest(unittest.TestCase):
+#     def test_correct(self):
+#         known_correct_values = [(6, 9), (20, 10000)]
+#         for a, b in known_correct_values:
+#             self.assertTrue(testIfDivides(a, b)[1])
+#
+#     def test_false(self):
+#         known_wrong_values = [(6, 27), (20, 1000000)]
+#         for a, b in known_wrong_values:
+#             self.assertFalse(testIfDivides(a,b)[1])
+#
+# if __name__ == '__main__':
+#     unittest.main()
 
 ################# Unit Test #################
