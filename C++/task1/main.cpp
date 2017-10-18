@@ -61,7 +61,7 @@ bool test_if_divides(int a, int b) {
 // ################# Unit Test ################# // Comment out code inside of 'Unit Test' when not unit testing
 
 #define CATCH_CONFIG_MAIN
-#include "catch.h"
+#include "catch.hpp"
 
 TEST_CASE("Factorials are computed", "[factorial]") {
     REQUIRE(factorial(1) == 1);

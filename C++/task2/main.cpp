@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "material.h"
-#include "lorry.h"
+#include "material.hpp"
+#include "lorry.hpp"
 
 // ################# Labsheet main ################# // Uncomment code inside of 'Labsheet main' when not running unit testing
 
@@ -22,7 +22,7 @@
 // ################# Unit Test ################# // Comment out code inside of 'Unit Test' when not unit testing
 
 #define CATCH_CONFIG_MAIN
-#include "catch.h"
+#include "catch.hpp"
 
 TEST_CASE("Most expensive load is calculated", "[lorry]") {
 	// create all the material objects
