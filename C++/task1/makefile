@@ -5,7 +5,7 @@ objects = main.o
 task1 : $(objects)
 	$(CXX) -o task1 $(objects)
 
-main.o : main.cpp catch.hpp
+main.o : main.cpp ../catch.hpp
 	$(CXX) -c main.cpp
 
 .PHONY : clean

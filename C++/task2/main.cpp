@@ -22,7 +22,7 @@ int main() {
 // ################# Unit Test ################# // Uncomment code inside of 'Unit Test' when unit testing
 
 //#define CATCH_CONFIG_MAIN
-//#include "catch.hpp"
+//#include "../catch.hpp"
 //
 //TEST_CASE("Most expensive load is calculated", "[lorry]") {
 //    // create all the material objects

@@ -61,7 +61,7 @@ int main() {
 // ################# Unit Test ################# // Uncomment code inside of 'Unit Test' when unit testing
 
 //#define CATCH_CONFIG_MAIN
-//#include "catch.hpp"
+//#include "../catch.hpp"
 //
 //TEST_CASE("Factorials are computed", "[factorial]") {
 //    REQUIRE(factorial(1) == 1);

@@ -18,7 +18,7 @@ int main() {
 // ################# Unit Test ################# // Uncomment code inside of 'Unit Test' when unit testing
 
 //#define CATCH_CONFIG_MAIN
-//#include "catch.hpp"
+//#include "../catch.hpp"
 //
 //TEST_CASE("Check is its safe to place a queen", "[is_safe]") {
 //    queen solver = queen(8);

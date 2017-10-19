@@ -6,7 +6,7 @@ objects = main.o
 task2 : $(objects)
 	$(CXX) $(CXXFLAGS) $(objects) -o task2
 
-main.o : main.cpp material.hpp lorry.hpp
+main.o : main.cpp ../catch.hpp material.hpp lorry.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
 .PHONY : clean
