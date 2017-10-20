@@ -12,3 +12,4 @@ main.o : main.cpp ../catch.hpp material.hpp lorry.hpp
 .PHONY : clean
 clean :
 	$(RM) task2 $(objects)
+

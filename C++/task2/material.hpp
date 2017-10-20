@@ -51,3 +51,4 @@ int material::get_price_per_kilo() {
 void material::decriment() {
     quantity--;
 }
+

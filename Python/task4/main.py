@@ -1,16 +1,14 @@
 #!/usr/bin/python3
 
-class cube:
-    def __init__(self, edgeLength, color):
-        self.__edgeLength = edgeLength
-        self.__color = color
-
+from cube import cube
 
 ################# Pseudo Code #################
 
 cubeList = []
 stack_cubes(cubeList)
-    WHILE
+    WHILE LENGTH cubeList != 0
+        c <-
+
 
 ################# Pseudo Code #################
 
@@ -19,3 +17,4 @@ stack_cubes(cubeList)
 
 ################# Unit Test ################# Uncomment code inside of 'Unit Test' when unit testing
 ################# Unit Test #################
+

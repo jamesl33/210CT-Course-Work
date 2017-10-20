@@ -51,7 +51,7 @@ std::map<std::string, int> lorry::get_cargo() {
 int lorry::get_cargo_weight() {
     int weight = 0;
     for (auto const& material : this -> get_cargo()) {
-        weight += material.second;	
+        weight += material.second;
     }
     return weight;
 }
@@ -108,3 +108,4 @@ std::ostream& operator<<(std::ostream& os, lorry& l) {
     }
     return os;
 }
+

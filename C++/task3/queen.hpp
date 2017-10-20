@@ -81,3 +81,4 @@ void queen::print_vector(std::vector<int> board) {
         }
     }
 }
+

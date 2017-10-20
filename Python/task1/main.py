@@ -6,7 +6,7 @@ def factorial(n):
     arguments:
         integer 'n': number which you want the factorial of
     output:
-        integer 'n!': returns the factorial of 'n' 
+        integer 'n!': returns the factorial of 'n'
     """
     if type(n) != int:
         raise TypeError('n: needs to be of type integer')
@@ -78,3 +78,4 @@ for a, b in testValues:
 #     unittest.main()
 
 ################# Unit Test #################
+

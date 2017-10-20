@@ -11,3 +11,4 @@ main.o : main.cpp ../catch.hpp
 .PHONY : clean
 clean :
 	$(RM) task1 $(objects)
+
