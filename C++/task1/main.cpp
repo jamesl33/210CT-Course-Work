@@ -1,34 +1,34 @@
 #include <iostream>
 
 long factorial(long n) {
-    /*
-       input:
-       long n: number which you want the factorial of
-       output:
-       long: returns n!
-       */
-    if (n == 0) {
-        return 1;
-    } else {
-        return n * factorial(n - 1);
-    }
+		/*
+			 input:
+			 long n: number which you want the factorial of
+			 output:
+			 long: returns n!
+			 */
+		if (n == 0) {
+				return 1;
+		} else {
+				return n * factorial(n - 1);
+		}
 }
 
 bool test_if_divides(int a, int b) {
-    /*
-       input:
-       int a: number we calculate the factorial of and then is tested if divides by 'b' equally
-       int b: a!' is divided by this number
-       output:
-       bool: boolean representing whether '(a! / b) == 0'
-       */
-    if (factorial(a) % b) {
-        std::cout << b << " does not divide by " << a << "!" << std::endl;
-        return false;
-    } else {
-        std::cout << b << " does divide by " << a << "!" << std::endl;
-        return true;
-    }
+		/*
+			 input:
+			 int a: number we calculate the factorial of and then is tested if divides by 'b' equally
+			 int b: a!' is divided by this number
+			 output:
+			 bool: boolean representing whether '(a! / b) == 0'
+			 */
+		if (factorial(a) % b) {
+				std::cout << b << " does not divide by " << a << "!" << std::endl;
+				return false;
+		} else {
+				std::cout << b << " does divide by " << a << "!" << std::endl;
+				return true;
+		}
 }
 
 // ################# Pseudo Code #################
@@ -50,10 +50,10 @@ bool test_if_divides(int a, int b) {
 // ################# Labsheet main ################# // Comment out code inside of 'Labsheet Main' when running unit test
 
 int main() {
-    test_if_divides(6, 9);
-    test_if_divides(20, 10000);
-    test_if_divides(6, 27);
-    test_if_divides(20, 1000000);
+		test_if_divides(6, 9);
+		test_if_divides(20, 10000);
+		test_if_divides(6, 27);
+		test_if_divides(20, 1000000);
 }
 
 // ################# Labsheet main #################
@@ -78,4 +78,3 @@ int main() {
 //}
 
 // ################# Unit Test #################
-

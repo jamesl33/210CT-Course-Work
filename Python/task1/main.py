@@ -1,53 +1,53 @@
 #!/usr/bin/python3
 
 def factorial(n):
-    """
-    alternative to using math.factorial()
-    arguments:
-        integer 'n': number which you want the factorial of
-    output:
-        integer 'n!': returns the factorial of 'n'
-    """
-    if type(n) != int:
-        raise TypeError('n: needs to be of type integer')
+	"""
+	alternative to using math.factorial()
+	arguments:
+		integer 'n': number which you want the factorial of
+	output:
+		integer 'n!': returns the factorial of 'n'
+	"""
+	if type(n) != int:
+		raise TypeError('n: needs to be of type integer')
 
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n - 1)
+	if n == 0:
+		return 1
+	else:
+		return n * factorial(n - 1)
 
 def testIfDivides(a, b):
-    """
-    arguments:
-        integer 'a': number we calculate the factorial of and then is tested if divides by 'b' equally
-            integer 'b: 'a!' is divided by this number
-    output:
-        touple[0]:
-            string: string which is will be printed e.g '9 divides by 6!'
-        touple[1]:
-            bool: boolean representing if 'a! / b' is equal to 0
+	"""
+	arguments:
+		integer 'a': number we calculate the factorial of and then is tested if divides by 'b' equally
+			integer 'b: 'a!' is divided by this number
+	output:
+		touple[0]:
+			string: string which is will be printed e.g '9 divides by 6!'
+		touple[1]:
+			bool: boolean representing if 'a! / b' is equal to 0
 
-    """
-    if type(a) != int or type(b) != int:
-        raise TypeError('testIfDivides only takes integers as arguments')
+	"""
+	if type(a) != int or type(b) != int:
+		raise TypeError('testIfDivides only takes integers as arguments')
 
-    if factorial(a) % b:
-        return("{0} does not divide by {1}!".format(b, a), False)
-    return("{0} divides by {1}!".format(b, a), True)
+	if factorial(a) % b:
+		return("{0} does not divide by {1}!".format(b, a), False)
+	return("{0} divides by {1}!".format(b, a), True)
 
 ################# Pseudo Code #################
 
 # FACTORIAL(n)
-# 	IF n = 0
-# 		RETURN 1
-# 	ELSE
-# 		RETURN n * FACTORIAL(n - 1)
+#     IF n = 0
+#         RETURN 1
+#     ELSE
+#         RETURN n * FACTORIAL(n - 1)
 
 # TEST-IF-DEVIDES(a, b)
-# 	IF a! MOD b = 0
-# 		RETURN true
-# 	ELSE
-# 		RETURN false
+#     IF a! MOD b = 0
+#         RETURN true
+#     ELSE
+#         RETURN false
 
 ################# Pseudo Code #################
 
@@ -55,7 +55,7 @@ def testIfDivides(a, b):
 
 testValues = [(6, 9), (20, 10000), (6, 27), (20, 1000000)]
 for a, b in testValues:
-    print(testIfDivides(a, b)[0])
+	print(testIfDivides(a, b)[0])
 
 ################# Labsheet Main #################
 
@@ -78,4 +78,3 @@ for a, b in testValues:
 #     unittest.main()
 
 ################# Unit Test #################
-

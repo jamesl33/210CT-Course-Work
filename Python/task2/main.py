@@ -61,4 +61,3 @@ print(lorry1)
 #     unittest.main()
 
 ################# Unit Test #################
-
