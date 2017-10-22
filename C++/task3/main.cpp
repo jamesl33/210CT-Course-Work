@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iostream>
 #include "queen.hpp"
 
 // ################# Labsheet main ################# // Comment out code inside of 'Labsheet Main' when running unit test
@@ -48,4 +49,3 @@ int main() {
 //}
 
 // ################# Unit Test #################
-
