@@ -87,7 +87,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
-# Ctags
-.tags
-.tags_swap
