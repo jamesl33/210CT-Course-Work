@@ -18,19 +18,18 @@ cube* widest_cube(std::vector<cube*>& cubeList, std::vector<cube*>& stackedList)
     cube* widestCube = nullptr;
     cube* last = nullptr;
 
-    if (stackedList.empty()) {
-        for (cube* i : cubeList) {
-            if (!(std::find(stackedList.begin(), stackedList.end(), i) != stackedList.end())) {
+    for (cube* i : cubeList) {
+        if (!(std::find(stackedList.begin(), stackedList.end(), i) != stackedList.end())) {
+            if (stackedList.empty())
+            {
                 if (i -> get_edge_length() > widest) {
                     widest = i -> get_edge_length();
                     widestCube = i;
                 }
             }
-        }
-    } else {
-        last = stackedList.back();
-        for (cube* i : cubeList) {
-            if (!(std::find(stackedList.begin(), stackedList.end(), i) != stackedList.end())) {
+            else
+            {
+                last = stackedList.back();
                 if (i -> get_edge_length() > widest && i -> get_color() != last -> get_color()) {
                     widest = i -> get_edge_length();
                     widestCube = i;
