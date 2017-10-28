@@ -22,9 +22,9 @@ def testIfDivides(a, b):
 		integer 'a': number we calculate the factorial of and then is tested if divides by 'b' equally
 			integer 'b: 'a!' is divided by this number
 	output:
-		touple[0]:
+		tuple[0]:
 			string: string which is will be printed e.g '9 divides by 6!'
-		touple[1]:
+		tuple[1]:
 			bool: boolean representing if 'a! / b' is equal to 0
 
 	"""

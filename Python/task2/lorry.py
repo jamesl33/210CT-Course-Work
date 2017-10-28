@@ -5,7 +5,7 @@ class lorry:
 		"""
 		class attributes:
 			__maxLoad: integer representing the maximum load the lorry can hold
-			__loadComposition: interger representing the price of the cargo in the lorry
+			__loadComposition: integer representing the price of the cargo in the lorry
 			__cargo: dictionary representing the cargo held in the lorry
 		"""
 		if type(maxLoad) != int:

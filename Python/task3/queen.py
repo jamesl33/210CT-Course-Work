@@ -34,7 +34,7 @@ class queen():
 
 	def place_queen(self, pos=0):
 		"""
-		Recursivly place a queen until you can longer place a queen
+		Recursively place a queen until you can longer place a queen
 		backtrack until you can place another queen
 		input:
 			int pos: value used when called  recursively to stop queens being placed in the same place causing infinite loop

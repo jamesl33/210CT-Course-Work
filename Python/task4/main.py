@@ -47,7 +47,7 @@ cube1 = cube('red', 5)
 cube2 = cube('red', 6)
 cube3 = cube('blue', 5)
 cubeList = [cube1, cube2, cube3]
-# Computer answer and print it
+# Compute answer and print it
 print(stack_cubes(cubeList))
 
 ################# Labsheet Main #################
