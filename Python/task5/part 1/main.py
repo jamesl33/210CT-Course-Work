@@ -42,7 +42,7 @@ def get_all_sets(array):
 
 def find_largest_set(array):
     """ Uses list from "get_all_sets" and finds the largest set of numbers next to each other in the matrix
-    if there is multiple sets which are the largest they will all be returned. """
+    if there is multiple sets which are the largest they will all be returned. Returns a list of lists containing tuples of x y coordinates """
     sets = []
     currentLargestSet = 0
     for lst in get_all_sets(array):
@@ -67,11 +67,12 @@ def create_array(n, m):
 
 ################# Labsheet Main ################# Comment out code inside of 'Labsheet Main' when running unit test
 
-numberSet = find_largest_set(create_array(8, 8)) # gets the list of number sets in the matrix (create array arguments are interchangeable)
+array = create_array(8, 8)
+numberSet = find_largest_set(array) # gets the list of number sets in the matrix (create array arguments are interchangeable)
 
 for i in range(len(numberSet)):
     if len(numberSet[i]) == 0:
         print("There are no sets of numbers in this matrix")
-    print("{0}: {1}".format(i + 1, numberSet[i]))
+    print("Number/Color = {0}\nSet = {1}\n".format(array[numberSet[i][0][0]][numberSet[i][0][1]], numberSet[i]))
 
 ################# Labsheet Main #################
