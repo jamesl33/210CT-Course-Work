@@ -76,3 +76,40 @@ for i in range(len(numberSet)):
     print("{0}. Number/Color = {1}\n   Set = {2}\n".format(i + 1, array[numberSet[i][0][0]][numberSet[i][0][1]], numberSet[i]))
 
 ################# Labsheet Main #################
+
+################# Unit Test ################# Uncomment code inside of 'Unit Test' when unit testing
+
+# import unittest
+
+# class UnitTest(unittest.TestCase):
+#     def test_check_if_set(self):
+#         array = np.zeros((4, 4), int)
+#         array[1][1] = 1
+#         array[0][1] = 1
+#         array[2][1] = 1
+#         array[1][2] = 1
+#         array[1][0] = 1
+#         self.assertEqual(check_if_set(array, 1, 1), [(0, 1), (1, 1), (2, 1), (1, 0), (1, 2)])
+
+#     def test_set_finder(self):
+#         array = np.zeros((4, 4), int)
+#         array[1][1] = 1
+#         array[0][1] = 1
+#         array[2][1] = 1
+#         array[1][2] = 1
+#         array[1][0] = 1
+#         self.assertEqual(find_largest_set(array), [[(0, 2), (0, 3), (1, 3), (2, 0), (2, 2), (2, 3), (3, 0), (3, 1), (3, 2), (3, 3)]])
+
+#     def test_set_finding(self):
+#         array = np.zeros((4, 4), int)
+
+#         for i in range(array.shape[0]):
+#             for j in range(array.shape[1]):
+#                 array[i][j] = 1
+
+#         self.assertEqual(find_largest_set(array), [[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2), (1, 3), (2, 0), (2, 1), (2, 2), (2, 3), (3, 0), (3, 1), (3, 2), (3, 3)]])
+
+# if __name__ == '__main__':
+#     unittest.main()
+
+################# Unit Test #################
