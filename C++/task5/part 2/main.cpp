@@ -47,7 +47,7 @@ int main() {
 // ################# Unit Test ################# // Uncomment code inside of 'Unit Test' when unit testing
 
 // #define CATCH_CONFIG_MAIN
-// #include "../catch.hpp"
+// #include "../../catch.hpp"
 // #include <algorithm>
 
 // TEST_CASE("function to sort vector", "[quick_sort]") {
