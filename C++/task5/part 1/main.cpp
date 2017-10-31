@@ -4,6 +4,7 @@
 #include <iostream>
 
 std::vector<std::vector<int>> create_array(int n, int m) {
+    /* Method to create a 2d array of random integers */
     srand(time(NULL));
     std::vector<std::vector<int>> array;
     for (int i = 0; i < n; i++) {
@@ -18,6 +19,8 @@ std::vector<std::vector<int>> create_array(int n, int m) {
 }
 
 std::vector<std::tuple<int, int>> check_neighbours(std::vector<std::vector<int>>& array, int x, int y) {
+    /* Method to check if the neighbours of coords (x, y) are of the same Color/Number as "(x, y)".
+    returns vector of tuples representing (x, y) coords of neighbours which have the same color/number as "(x, y)" */
     std::vector<std::tuple<int, int>> neighbours;
 
     if (!x - 1 < 0) {
@@ -48,6 +51,7 @@ std::vector<std::tuple<int, int>> check_neighbours(std::vector<std::vector<int>>
 }
 
 std::vector<std::tuple<int, int>> check_if_set(std::vector<std::vector<int>>& array, int x, int y, std::vector<std::tuple<int, int>>& visited) {
+    /* Recursive method to check if the position (x, y) is included in a set. Returns empty list if there isn't a set of numbers */
     std::vector<std::tuple<int, int>> neighbours = check_neighbours(array, x, y);
     for (std::tuple<int, int> i : neighbours) {
         auto it = std::find (visited.begin(), visited.end(), i);
@@ -56,11 +60,11 @@ std::vector<std::tuple<int, int>> check_if_set(std::vector<std::vector<int>>& ar
             check_if_set(array, std::get<0>(i), std::get<1>(i), visited);
         }
     }
-
     return visited;
 }
 
 std::vector<std::vector<std::tuple<int, int>>> get_all_sets(std::vector<std::vector<int>> array) {
+    /* Method to get all sets of colors in the matrix. This includes empty sets which will are removed in "find_largest_set" */
     std::vector<std::vector<std::tuple<int, int>>> allSets;
     std::vector<std::tuple<int, int>> visited;
     for (int i = 0; i < array.size(); i++) {
@@ -73,6 +77,8 @@ std::vector<std::vector<std::tuple<int, int>>> get_all_sets(std::vector<std::vec
 }
 
 std::vector<std::vector<std::tuple<int, int>>> find_largest_set(std::vector<std::vector<int>> array) {
+    /* Uses output from "get_all_sets" and finds the largest set of numbers next to each other in the matrix
+    if there is multiple sets which are the largest they will all be returned */
     std::vector<std::vector<std::tuple<int, int>>> sets;
     int currentLargestSet = 0;
     for (auto i : get_all_sets(array)) {
@@ -96,6 +102,7 @@ std::vector<std::vector<std::tuple<int, int>>> find_largest_set(std::vector<std:
 }
 
 void pretty_print_array(std::vector<std::vector<int>>& array) {
+    /* Print 2D array to the console in a nice way */
     for (int i = 0; i < array.size(); i++) {
         std::cout << "[";
         for (int j = 0; j < array[i].size(); j++) {
@@ -111,18 +118,19 @@ void pretty_print_array(std::vector<std::vector<int>>& array) {
 }
 
 void pretty_print_find_largest_set_output(std::vector<std::vector<int>>& array, std::vector<std::vector<std::tuple<int, int>>>& numberSet) {
-        for (int i = 0; i < numberSet.size(); i++) {
-            std::cout << i + 1 << ". ";
-            std::cout << "Number/Color = " << array[std::get<0>(numberSet[i][0])][std::get<1>(numberSet[i][0])] << "\n   Set = [";
-            for (int j = 0; j < numberSet[i].size(); j++) {
-                if (j + 1 == numberSet[i].size()) {
-                    std::cout << "(" << std::get<0>(numberSet[i][j]) << ", " << std::get<1>(numberSet[i][j]) << ")";
-                } else {
-                    std::cout << "(" << std::get<0>(numberSet[i][j]) << ", " << std::get<1>(numberSet[i][j]) << "), ";
-                }
+    /* Print output from "find_largest_set" in a nice way thats easy to read and compare coords*/
+    for (int i = 0; i < numberSet.size(); i++) {
+        std::cout << i + 1 << ". ";
+        std::cout << "Number/Color = " << array[std::get<0>(numberSet[i][0])][std::get<1>(numberSet[i][0])] << "\n   Set = [";
+        for (int j = 0; j < numberSet[i].size(); j++) {
+            if (j + 1 == numberSet[i].size()) {
+                std::cout << "(" << std::get<0>(numberSet[i][j]) << ", " << std::get<1>(numberSet[i][j]) << ")";
+            } else {
+                std::cout << "(" << std::get<0>(numberSet[i][j]) << ", " << std::get<1>(numberSet[i][j]) << "), ";
             }
-            std::cout << "]" << std::endl << std::endl;
         }
+        std::cout << "]" << std::endl << std::endl;
+    }
 }
 
 // ################# Labsheet main ################# // Comment out code inside of 'Labsheet Main' when running unit test
