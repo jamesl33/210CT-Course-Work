@@ -97,6 +97,17 @@ class linked_list:
             count += 1
             node = node.next_node
 
+    def reverse_display(self):
+        contents = '['
+        next_node = self.last_node
+        while next_node:
+            if next_node.previous_node == None:
+                contents += '{0}]'.format(str(next_node.data))
+            else:
+                contents += '{0}, '.format(str(next_node.data))
+            next_node = next_node.previous_node
+        return contents
+
     def __str__(self):
         contents = '['
         next_node = self.first_node
