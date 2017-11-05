@@ -1,15 +1,16 @@
 CXX=g++
+CXXFLAGS = --std=c++11
 RM=rm -f
 objects = main.o queen.o
 
 task3 : $(objects)
-	$(CXX) -o task3 $(objects)
+	$(CXX) $(CXXFLAGS) -o task3 $(objects)
 
-main.o : main.cpp ../catch.hpp queen.hpp
-	$(CXX) -c main.cpp
+main.o : main.cpp queen.hpp
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
 queen.o : queen.cpp queen.hpp
-	$(CXX) -c queen.cpp
+	$(CXX) $(CXXFLAGS) -c queen.cpp
 
 .PHONY : clean
 clean :

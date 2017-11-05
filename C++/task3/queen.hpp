@@ -1,3 +1,5 @@
+#include <vector>
+
 class queen {
 		public:
 				queen(int bs) {

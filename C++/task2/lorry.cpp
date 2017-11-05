@@ -1,3 +1,4 @@
+#include <iostream>
 #include "lorry.hpp"
 
 void lorry::set_max_load(int ml) {
