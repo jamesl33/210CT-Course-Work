@@ -72,31 +72,6 @@ class linked_list:
                 currentNode = currentNode.next_node
             currentNode = self.first_node
 
-    def insert(self, newNode, index): # Zero indexed
-        if index < 0 or index > self.size():
-            raise IndexError('List index out of range')
-
-        if index == 0:
-            self.push(newNode)
-            return
-
-        node = self.first_node
-
-        count = 1
-        while node:
-            if node.next_node == None:
-                self.append(newNode)
-                break
-
-            if count == index:
-                newNode.previous_node = node
-                newNode.next_node = node.next_node
-                node.next_node = newNode
-                break
-
-            count += 1
-            node = node.next_node
-
     def reverse_display(self):
         contents = '['
         next_node = self.last_node
