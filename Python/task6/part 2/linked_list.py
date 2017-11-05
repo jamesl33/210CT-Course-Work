@@ -54,26 +54,23 @@ class linked_list:
             node = node.next_node
         return count
 
+    def swap(self, a, b):
+        tmpData = b.data
+        b.data = a.data
+        a.data = tmpData
+
     def sort(self):
-        lst = []
         currentNode = self.first_node
-        while currentNode:
-            lst.append(currentNode)
-            currentNode = currentNode.next_node
+        Sorted = False
 
-        isSorted = False
-        while not isSorted:
-            isSorted = True
-            for i in range(len(lst) - 1):
-                if lst[i].data > lst[i + 1].data:
-                    lst[i], lst[i + 1] = lst[i + 1], lst[i]
-                    isSorted = False
-
-        sortedLst = linked_list()
-        for i in range(len(lst)):
-            sortedLst.append(lst[i])
-
-        self.first_node = lst[0]
+        while not Sorted:
+            Sorted = True
+            while currentNode:
+                if currentNode.next_node != None and currentNode.data > currentNode.next_node.data:
+                    self.swap(currentNode, currentNode.next_node)
+                    Sorted = False
+                currentNode = currentNode.next_node
+            currentNode = self.first_node
 
     def insert(self, newNode, index): # Zero indexed
         if index < 0 or index > self.size():
