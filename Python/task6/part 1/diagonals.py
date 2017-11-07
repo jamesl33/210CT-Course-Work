@@ -18,16 +18,15 @@ def get_diagonal(array, offset=0):
             pass
     return lst
 
-def get_all_but_middle(array, n):
+def get_all_diagonals(array, m):
     diagonals = []
     for i in range(-(len(array) - 1), (len(array))):
         diagonal = get_diagonal(array, i)
-        if len(diagonal) != len(array) and len(diagonal) == n:
+        if len(diagonal) >= m:
             diagonals.append(diagonal)
     return diagonals
 
-def smallest_sum_in_middle(array, n):
-    diagonal = get_diagonal(array)
-    diagonal.sort()
-    diagonal = diagonal[:n]
-    return sum(diagonal)
+def smallest_sum_in_array(array, m):
+    array.sort()
+    array = array[:m]
+    return sum(array)

@@ -2,19 +2,17 @@
 
 from diagonals import *
 
-def main(n, m):
-    if n < m:
-        raise ValueError('"m" is larger than the size of the array')
+n = 8 # Array Size
+m = 4 # Diagonal Size
 
-    array = np.random.random_integers(1, 9, size=(n, n))
-    diagonals = get_all_but_middle(array, m)
+if n < m:
+    raise ValueError('"m" is larger than the size of the array')
 
-    for i in range(len(diagonals)):
-        diagonals[i] = sum(diagonals[i])
+array = np.random.random_integers(1, 9, size=(n, n))
+diagonals = get_all_diagonals(array, m)
 
-    diagonals.append(smallest_sum_in_middle(array, m))
+for i in range(len(diagonals)):
+    diagonals[i] = smallest_sum_in_array(diagonals[i], m)
 
-    print(array)
-    print('The smallest sum of diagonals parallel to the main one is {0}'.format(min(diagonals)))
-
-main(4, 2)
+print(array)
+print('Answer: {0}'.format(min(diagonals)))

@@ -4,29 +4,25 @@ from diagonals import *
 import unittest
 
 class UnitTest(unittest.TestCase):
-    def test_smallest_sum_in_middle(self):
-        array = np.zeros((4, 4), int)
-        for i in range(len(array)):
-            for j in range(len(array)):
-                array[i][j] = 1
+    def test_get_diagonal(self):
+        array = [[3, 1, 5, 6, 9], [2, 4, 1, 9, 7], [3, 5, 2, 8, 10], [4, 2, 1, 6, 8], [1, 4, 7, 9, 1]]
+        self.assertEqual(get_diagonal(array), [3, 4, 2, 6, 1])
 
-        array[0][0] = 0
-        array[1][1] = 0
-        array[2][2] = 0
-        array[3][3] = 0
+    def test_sum_in_array(self):
+        array = [1, 123, 312, 3, 223, 1, 323, 4, 123, 1, 23, 1]
+        self.assertEqual(smallest_sum_in_array(array, 4), 4)
 
-        self.assertEqual(smallest_sum_in_middle(array, 2), 0)
+    def test_labsheet(self):
+        array = [[3, 1, 5, 6, 9], [2, 4, 1, 9, 7], [3, 5, 2, 8, 10], [4, 2, 1, 6, 8], [1, 4, 7, 9, 1]]
 
-    def test_complete(self):
-        array = np.zeros((4, 4), int)
-        diagonals = get_all_but_middle(array, 2)
+        diagonals = get_all_diagonals(array, 4)
 
         for i in range(len(diagonals)):
-            diagonals[i] = sum(diagonals[i])
+            diagonals[i] = smallest_sum_in_array(diagonals[i], 4)
 
-        diagonals.append(smallest_sum_in_middle(array, 2))
+        diagonals = min(diagonals)
 
-        self.assertEqual(min(diagonals), 0)
+        self.assertEqual(diagonals, 10)
 
 if __name__ == '__main__':
     unittest.main()
