@@ -1,17 +1,17 @@
 CXX=g++
 CXXFLAGS = --std=c++11
 RM=rm -f
-objects = main.o queen.o
+objects = main.o cube.o
 
-task3 : $(objects)
-	$(CXX) $(CXXFLAGS) -o task3 $(objects)
+task4 : $(objects)
+	$(CXX) $(CXXFLAGS) -o task4 $(objects)
 
-main.o : main.cpp queen.hpp
+main.o : main.cpp ../catch.hpp cube.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
-queen.o : queen.cpp queen.hpp
-	$(CXX) $(CXXFLAGS) -c queen.cpp
+cube.o : cube.cpp cube.hpp
+	$(CXX) $(CXXFLAGS) -c cube.cpp
 
 .PHONY : clean
 clean :
-	$(RM) task3 $(objects)
+	$(RM) task4 $(objects)

@@ -1,26 +1,25 @@
 #!/usr/bin/python3
 
-import random
-from sorting import quick_sort
+from linked_list import linked_list
+from node import node
+import string
 
-ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4]) # https://codegolf.stackexchange.com/questions/4707/outputting-ordinal-numbers-1st-2nd-3rd#answer-4712
+with open('paragraph.txt') as file:
+    linkedLists = {}
+    words = file.read().split()
+    for word in words:
+        # In this case we are not worried about punctuation and capital letters
+        word = word.translate(str.maketrans('', '', string.punctuation))
+        word = word.lower()
 
-""" generate an array of length '10' sort it and as the user which element they would like """
-unsortedArray = []
-for i in range(10):
-    unsortedArray.append(random.randint(1, 1000))
-sortedArray = quick_sort(unsortedArray)
+        newNode = node(word)
 
-while True:
-    try:
-        element = int(input('Which element do you want to find? '))
-        break
-    except ValueError:
-        print("Please enter a integer between 1 and {0}".format(len(sortedArray)))
+        if len(word) not in linkedLists:
+            linkedLists[len(word)] = linked_list()
+            linkedLists[len(word)].append(newNode)
+        else:
+            linkedLists[len(word)].append(newNode)
 
-print("{0}".format(sortedArray))
-
-if element > len(sortedArray) // 2:
-    print('The {0} largest element is {1}'.format(ordinal(element), sortedArray[element - 1]))
-else:
-    print('The {0} smallest element is {1}'.format(ordinal(element), sortedArray[element - 1]))
+    for i in linkedLists:
+        linkedLists[i].sort()
+        print('Words of length {0}: {1}'.format(i, linkedLists[i]))

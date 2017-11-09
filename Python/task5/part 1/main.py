@@ -1,11 +1,18 @@
 #!/usr/bin/python3
 
-from set_finding import *
+from diagonals import *
 
-array = create_array(8, 8)
-numberSet = find_largest_set(array) # gets the list of number sets in the matrix (create array arguments are interchangeable)
+n = 8 # Array Size
+m = 4 # Diagonal Size
 
-for i in range(len(numberSet)):
-    if len(numberSet[i]) == 0:
-        print("There are no sets of numbers in this matrix")
-    print("{0}. Number/Color = {1}\n   Set = {2}\n".format(i + 1, array[numberSet[i][0][0]][numberSet[i][0][1]], numberSet[i]))
+if n < m:
+    raise ValueError('"m" is larger than the size of the array')
+
+array = np.random.random_integers(1, 9, size=(n, n))
+diagonals = get_all_diagonals(array, m)
+
+for i in range(len(diagonals)):
+    diagonals[i] = smallest_sum_in_array(diagonals[i], m)
+
+print(array)
+print('Answer: {0}'.format(min(diagonals)))

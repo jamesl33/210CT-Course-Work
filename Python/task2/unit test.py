@@ -1,40 +1,33 @@
 #!/usr/bin/python3
 
 import unittest
-from material import material
-from lorry import lorry
+from queen import queen
 
 class UnitTest(unittest.TestCase):
-    def test_labsheet(self):
-        known_correct_values = {"Gold": 4, "Copper": 6}
+  def test_correct(self):
+      """ Run place_queen() function with every value from 0 to 8 and check if the result is in the known correct values """
+      known_correct_values = [[0, 4, 7, 5, 2, 6, 1, 3],
+                              [1, 3, 5, 7, 2, 0, 6, 4],
+                              [2, 0, 6, 4, 7, 1, 3, 5],
+                              [3, 0, 4, 7, 1, 6, 2, 5],
+                              [4, 0, 3, 5, 7, 1, 6, 2],
+                              [5, 0, 4, 1, 7, 2, 6, 3],
+                              [6, 0, 2, 7, 5, 3, 1, 4],
+                              [7, 1, 3, 0, 6, 4, 2, 5]]
 
-        gold = material('Gold', 4, 100)
-        copper = material('Copper', 7, 65)
-        plastic = material('Plastic', 15, 50)
+      for i in range(8):
+          solver = queen(8)
+          self.assertTrue(solver.place_queen(i) in known_correct_values)
 
-        materials = [gold, plastic, copper]
-        lorry1 = lorry(10)
-        lorry1.pickup_deliviery(materials)
-
-        self.assertEqual(lorry1.get_cargo(), known_correct_values)
-        self.assertEqual(lorry1.get_loadComposition(), 790)
-
-    def test_extra(self):
-        known_correct_values = {"Ruby": 2, "Copper": 7, "Diamond": 1, "Plastic": 1, "Gold": 4}
-
-        gold = material('Gold', 4, 100)
-        copper = material('Copper', 7, 65)
-        plastic = material('Plastic', 15, 50)
-        diamond = material('Diamond', 1, 1000)
-        ruby = material('Ruby', 2, 500)
-
-        materials = [gold, plastic, copper, diamond, ruby]
-
-        lorry1 = lorry(15)
-        lorry1.pickup_deliviery(materials)
-
-        self.assertEqual(lorry1.get_cargo(), known_correct_values)
-        self.assertEqual(lorry1.get_loadComposition(), 2905)
+  def test_is_safe(self):
+      """ Tests if is_safe function is working as is should be """
+      solver = queen(8)
+      solver.boardState = [0]
+      self.assertFalse(solver.is_safe(0, 1))
+      self.assertFalse(solver.is_safe(1, 0))
+      self.assertFalse(solver.is_safe(1, 1))
+      self.assertTrue(solver.is_safe(2, 1))
+      self.assertTrue(solver.is_safe(1, 2))
 
 if __name__ == '__main__':
-    unittest.main()
+  unittest.main()

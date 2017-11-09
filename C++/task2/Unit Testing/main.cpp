@@ -1,26 +1,30 @@
 #define CATCH_CONFIG_MAIN
 #include "../../catch.hpp"
-#include "../lorry.hpp"
+#include "../queen.hpp"
 
-TEST_CASE("Most expensive load is calculated", "[lorry]") {
-  material gold=material("Gold", 4, 100);
-  material copper=material("Copper", 7, 65);
-  material plastic=material("Plastic", 15, 50);
-  material diamond=material("Diamond", 1, 1000);
-  material ruby=material("Ruby", 2, 500);
+TEST_CASE("Check is its safe to place a queen", "[is_safe]") {
+  queen solver = queen(8);
+  std::vector<int> v = solver.get_board_state();
+  v.emplace_back(0);
+  solver.set_board_state(v);
 
-  std::vector<material> materials_labsheet = {gold, plastic, copper};
-  std::vector<material> materials_extra = {gold, plastic, copper, diamond, ruby};
+  REQUIRE((solver.is_safe(0, 1)) == false);
+  REQUIRE((solver.is_safe(1, 0)) == false);
+  REQUIRE((solver.is_safe(1, 1)) == false);
+  REQUIRE((solver.is_safe(2, 1)) == true);
+  REQUIRE((solver.is_safe(1, 2)) == true);
+}
 
-  std::map<std::string, int> know_values_labsheet = {{"Gold", 4}, {"Copper", 6}};
-  std::map<std::string, int> know_values_extra = {{"Diamond", 1}, {"Ruby", 2}, {"Gold", 4}, {"Copper", 7}, {"Plastic", 1}};
+TEST_CASE("Check if place_queen returns correct solution to 8 queens", "[place_queen]") {
+  std::vector<std::vector<int>> knownValues;
+  knownValues = {{0, 4, 7, 5, 2, 6, 1, 3}, {1, 3, 5, 7, 2, 0, 6, 4},
+                                 {2, 0, 6, 4, 7, 1, 3, 5}, {3, 0, 4, 7, 1, 6, 2, 5},
+                                 {4, 0, 3, 5, 7, 1, 6, 2}, {5, 0, 4, 1, 7, 2, 6, 3},
+                                 {6, 0, 2, 7, 5, 3, 1, 4}, {7, 1, 3, 0, 6, 4, 2, 5}};
 
-  lorry lorry1=lorry(10);
-  lorry1.pickup_delivery(materials_labsheet);
-
-  lorry lorry2=lorry(15);
-  lorry2.pickup_delivery(materials_extra);
-
-  REQUIRE(lorry1.get_cargo() == know_values_labsheet);
-  REQUIRE(lorry2.get_cargo() == know_values_extra);
+  for (int i = 0; i < 8; i++) {
+          queen solver = queen(8);
+          std::vector<int> proposedSolution = solver.place_queen(i);
+          REQUIRE(std::find(knownValues.begin(), knownValues.end(), proposedSolution) != knownValues.end());
+  }
 }

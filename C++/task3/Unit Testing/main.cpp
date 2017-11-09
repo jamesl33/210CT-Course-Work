@@ -1,30 +1,80 @@
 #define CATCH_CONFIG_MAIN
 #include "../../catch.hpp"
-#include "../queen.hpp"
+#include "../cube.hpp"
+#include "../stacking.cpp"
 
-TEST_CASE("Check is its safe to place a queen", "[is_safe]") {
-  queen solver = queen(8);
-  std::vector<int> v = solver.get_board_state();
-  v.emplace_back(0);
-  solver.set_board_state(v);
+TEST_CASE("function should return a pointer to the widest cube in cubeList that isnt in stackedList", "[widest_cube]") {
+        cube cube1=cube("red", 5);
+        cube cube2=cube("red", 6);
+        cube cube3=cube("blue", 5);
 
-  REQUIRE((solver.is_safe(0, 1)) == false);
-  REQUIRE((solver.is_safe(1, 0)) == false);
-  REQUIRE((solver.is_safe(1, 1)) == false);
-  REQUIRE((solver.is_safe(2, 1)) == true);
-  REQUIRE((solver.is_safe(1, 2)) == true);
+        std::vector<cube*> cubeList = {&cube1, &cube2, &cube3};
+        std::vector<cube*> stackedList = {&cube2};
+
+        REQUIRE(widest_cube(cubeList, stackedList) == &cube3);
+
+        cubeList = {&cube1, &cube2, &cube3};
+        stackedList = {};
+
+        REQUIRE(widest_cube(cubeList, stackedList) == &cube2);
+
+        cubeList = {&cube1, &cube2, &cube3};
+        stackedList = {&cube2, &cube3};
+
+        REQUIRE(widest_cube(cubeList, stackedList) == &cube1);
+
+        cubeList = {&cube1, &cube2, &cube3};
+        stackedList = {&cube1, &cube2, &cube3};
+
+        REQUIRE(widest_cube(cubeList, stackedList) == NULL);
 }
 
-TEST_CASE("Check if place_queen returns correct solution to 8 queens", "[place_queen]") {
-  std::vector<std::vector<int>> knownValues;
-  knownValues = {{0, 4, 7, 5, 2, 6, 1, 3}, {1, 3, 5, 7, 2, 0, 6, 4},
-                                 {2, 0, 6, 4, 7, 1, 3, 5}, {3, 0, 4, 7, 1, 6, 2, 5},
-                                 {4, 0, 3, 5, 7, 1, 6, 2}, {5, 0, 4, 1, 7, 2, 6, 3},
-                                 {6, 0, 2, 7, 5, 3, 1, 4}, {7, 1, 3, 0, 6, 4, 2, 5}};
+TEST_CASE("function should return total height of 'stackedList' of cubes", "[calculate_height]") {
+    cube cube1=cube("red", 5);
+    cube cube2=cube("red", 6);
+    cube cube3=cube("blue", 5);
 
-  for (int i = 0; i < 8; i++) {
-          queen solver = queen(8);
-          std::vector<int> proposedSolution = solver.place_queen(i);
-          REQUIRE(std::find(knownValues.begin(), knownValues.end(), proposedSolution) != knownValues.end());
-  }
+    std::vector<cube*> stackedList = {&cube2};
+
+    REQUIRE(calculate_height(stackedList) == 6);
+
+    stackedList = {&cube1, &cube2, &cube3};
+
+    REQUIRE(calculate_height(stackedList) == 16);
+
+    stackedList = {&cube2, &cube3};
+
+    REQUIRE(calculate_height(stackedList) == 11);
+
+    REQUIRE(calculate_height({}) == 0);
+}
+
+TEST_CASE("method to stack cubes according to rules", "[widest_cube]") {
+    cube cube1=cube("red", 5);
+    cube cube2=cube("red", 6);
+    cube cube3=cube("blue", 5);
+    cube cube4=cube("purple", 4);
+    cube cube5=cube("black", 8);
+    cube cube6=cube("black", 4);
+
+    std::vector<cube*> cubeList = {&cube1, &cube2, &cube3};
+    std::vector<cube*> stackedList = {&cube2, &cube3, &cube1};
+
+    REQUIRE(stack_cubes(cubeList) == stackedList);
+
+    cubeList = {&cube1, &cube2, &cube3, &cube4, &cube5, &cube6};
+    stackedList = {&cube5, &cube2, &cube3, &cube1, &cube4, &cube6};
+
+    REQUIRE(stack_cubes(cubeList) == stackedList);
+
+    cubeList = {};
+    stackedList = {};
+
+    REQUIRE(stack_cubes(cubeList) == stackedList);
+
+    stackedList = {&cube5, &cube2, &cube3, &cube1, &cube4, &cube6};
+    cubeList = {&cube5, &cube2, &cube3, &cube1, &cube4, &cube6};
+
+    REQUIRE(stack_cubes(cubeList) == stackedList);
+
 }

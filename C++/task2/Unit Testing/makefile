@@ -1,19 +1,16 @@
 CXX=g++
 CXXFLAGS = --std=c++11
 RM=rm -f
-objects = main.o lorry.o material.o
+objects = main.o queen.o
 
 Units : $(objects)
-	$(CXX) $(CXXFLAGS) $(objects) -o Units
+	$(CXX) $(CXXFLAGS) -o Units $(objects)
 
-main.o : main.cpp ../../catch.hpp ../material.hpp ../lorry.hpp
+main.o : main.cpp ../queen.hpp ../../catch.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
-lorry.o : ../lorry.cpp ../lorry.hpp
-	$(CXX) $(CXXFLAGS) -c ../lorry.cpp
-
-material.o : ../material.cpp ../material.hpp
-	$(CXX) $(CXXFLAGS) -c ../material.cpp
+queen.o : ../queen.cpp ../queen.hpp
+	$(CXX) $(CXXFLAGS) -c ../queen.cpp
 
 .PHONY : clean
 clean :

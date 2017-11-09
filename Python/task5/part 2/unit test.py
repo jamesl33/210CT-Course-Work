@@ -1,19 +1,47 @@
 #!/usr/bin/python3
 
-from sorting import *
-
 import unittest
+from linked_list import *
 
 class UnitTest(unittest.TestCase):
-    def test_quick__sort(self):
-        unsortedList = [1,5,2,6,8,5,234,5645,234,6,4,756,234,2,3,4,656,7,234]
-        self.assertEqual(quick_sort(unsortedList), [1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 7, 8, 234, 234, 234, 234, 656, 756, 5645])
+    def test_append(self):
+        node1 = node('test')
+        lst = linked_list()
+        lst.append(node1)
+        self.assertTrue(lst.size() == 1)
 
-        unsortedList = [5, 3, 2, 72, 5, 7, 23]
-        self.assertEqual(quick_sort(unsortedList), [2, 3, 5, 5, 7, 23, 72])
+    def test_pop(self):
+        node1 = node('test')
+        lst = linked_list()
+        lst.append(node1)
+        lst.pop()
+        self.assertTrue(lst.size() == 0)
 
-        unsortedList = [1,2,3,4,5,6,7,8,9]
-        self.assertEqual(quick_sort(unsortedList), [1,2,3,4,5,6,7,8,9])
+    def test_swap(self):
+        node1 = node('test')
+        node2 = node('anotherTest')
+        lst = linked_list()
+        lst.append(node1)
+        lst.append(node2)
+        lst.swap(node1, node2)
+
+        currentNode = lst.first_node
+        while currentNode:
+            self.assertTrue(currentNode.data == node1.data or node2.data)
+            currentNode = currentNode.next_node
+
+    def test_remove(self):
+        node1 = node('test')
+        node2 = node('anotherTest')
+        lst = linked_list()
+        lst.append(node1)
+        lst.append(node2)
+        lst.remove(node1)
+
+        currentNode = lst.first_node
+        while currentNode:
+            self.assertTrue(currentNode.data == node2.data)
+            currentNode = currentNode.next_node
 
 if __name__ == '__main__':
     unittest.main()

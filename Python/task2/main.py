@@ -1,15 +1,21 @@
 #!/usr/bin/python3
 
-from lorry import lorry
-from material import material
+from queen import queen
 
-known_correct_values = {"Gold": 4, "Copper": 6}
+for i in range(8):
+	solver = queen(8)
+	print("Solution {0} - {1}".format(i + 1, solver.place_queen(i)))
 
-gold = material('Gold', 4, 100)
-copper = material('Copper', 7, 65)
-plastic = material('Plastic', 15, 50)
+################# Pseudo Code #################
 
-materials = [gold, plastic, copper]
-lorry1 = lorry(10)
-lorry1.pickup_deliviery(materials)
-print(lorry1)
+# solve(pos=0)
+#   boardState = []
+#   IF LEN(boardState)
+#       FOR i = pos; pos < 8
+#           IF safe_placement(LEN(boardState))
+#               boardState APPEND i
+#               RETURN solve()
+#       lastQueenRow = boardState.pop()
+#       return solve(lastQueenRow + 1)
+
+################# Pseudo Code #################

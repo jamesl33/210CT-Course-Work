@@ -1,21 +1,12 @@
 #!/usr/bin/python3
 
-from queen import queen
+from cube import cube
+from stacking import *
 
-for i in range(8):
-	solver = queen(8)
-	print("Solution {0} - {1}".format(i + 1, solver.place_queen(i)))
-
-################# Pseudo Code #################
-
-# solve(pos=0)
-#   boardState = []
-#   IF LEN(boardState)
-#       FOR i = pos; pos < 8
-#           IF safe_placement(LEN(boardState))
-#               boardState APPEND i
-#               RETURN solve()
-#       lastQueenRow = boardState.pop()
-#       return solve(lastQueenRow + 1)
-
-################# Pseudo Code #################
+# Create cubes from the labsheet
+cube1 = cube('red', 5)
+cube2 = cube('red', 6)
+cube3 = cube('blue', 5)
+cubeList = [cube1, cube2, cube3]
+# Compute answer and print it
+print(stack_cubes(cubeList))

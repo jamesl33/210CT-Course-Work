@@ -6,7 +6,7 @@ objects = main.o
 Units : $(objects)
 	$(CXX) $(CXXFLAGS) -o Units $(objects)
 
-main.o : main.cpp ../../../catch.hpp
+main.o : main.cpp ../diagonals.cpp ../../../catch.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
 .PHONY : clean

@@ -1,10 +1,13 @@
 #include <iostream>
-#include "queen.hpp"
+#include <vector>
+#include "cube.hpp"
+#include "stacking.cpp"
 
 int main() {
-		for (int i = 0; i < 8; i++) {
-				queen solver = queen(8);
-				std::cout << "Solution " << i + 1 << " - ";
-				solver.print_vector(solver.place_queen(i));
-		}
+    cube cube1=cube("red", 5);
+    cube cube2=cube("red", 6);
+    cube cube3=cube("blue", 5);
+
+    std::vector<cube*> cubeList = {&cube1, &cube2, &cube3};
+    std::cout << "The maximum height is " << calculate_height(stack_cubes(cubeList)) << std::endl;
 }

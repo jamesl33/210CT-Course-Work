@@ -1,33 +1,34 @@
 #!/usr/bin/python3
 
+from cube import cube
+from stacking import *
 import unittest
-from queen import queen
 
 class UnitTest(unittest.TestCase):
-  def test_correct(self):
-      """ Run place_queen() function with every value from 0 to 8 and check if the result is in the known correct values """
-      known_correct_values = [[0, 4, 7, 5, 2, 6, 1, 3],
-                              [1, 3, 5, 7, 2, 0, 6, 4],
-                              [2, 0, 6, 4, 7, 1, 3, 5],
-                              [3, 0, 4, 7, 1, 6, 2, 5],
-                              [4, 0, 3, 5, 7, 1, 6, 2],
-                              [5, 0, 4, 1, 7, 2, 6, 3],
-                              [6, 0, 2, 7, 5, 3, 1, 4],
-                              [7, 1, 3, 0, 6, 4, 2, 5]]
+    def test_calc_height(self):
+        cube1 = cube('red', 6)
+        cube2 = cube('blue', 5)
+        stackedList = [cube1, cube2]
+        self.assertEqual(calc_height(stackedList), 'The maximum tower height is 11')
 
-      for i in range(8):
-          solver = queen(8)
-          self.assertTrue(solver.place_queen(i) in known_correct_values)
+    def test_failure(self):
+        cube1 = cube('red', 5)
+        cube2 = cube('red', 5)
+        cubeList = [cube1, cube2]
+        self.assertEqual(stack_cubes(cubeList), 'You cannot stack these cubes according to the rules')
 
-  def test_is_safe(self):
-      """ Tests if is_safe function is working as is should be """
-      solver = queen(8)
-      solver.boardState = [0]
-      self.assertFalse(solver.is_safe(0, 1))
-      self.assertFalse(solver.is_safe(1, 0))
-      self.assertFalse(solver.is_safe(1, 1))
-      self.assertTrue(solver.is_safe(2, 1))
-      self.assertTrue(solver.is_safe(1, 2))
+    def test_widest_cube(self):
+        cube1 = cube('red', 5)
+        cube2 = cube('blue', 3)
+        cube3 = cube('red', 5)
+        cube4 = cube('green', 6)
+        cube5 = cube('purple', 7)
+        cube6 = cube('red', 2)
+        cubeList = [cube1, cube2, cube3, cube4, cube5, cube6]
+
+        stackedList = [cube5]
+
+        self.assertEqual(widest_cube(cubeList, stackedList), cube4)
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()

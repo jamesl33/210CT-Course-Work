@@ -1,20 +1,17 @@
 CXX=g++
 CXXFLAGS = --std=c++11
 RM=rm -f
-objects = main.o lorry.o material.o
+objects = main.o queen.o
 
-task2 : $(objects)
-	$(CXX) $(CXXFLAGS) $(objects) -o task2
+task3 : $(objects)
+	$(CXX) $(CXXFLAGS) -o task3 $(objects)
 
-main.o : main.cpp material.hpp lorry.hpp
+main.o : main.cpp queen.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
-lorry.o : lorry.cpp lorry.hpp
-	$(CXX) $(CXXFLAGS) -c lorry.cpp
-
-material.o : material.cpp material.hpp
-	$(CXX) $(CXXFLAGS) -c material.cpp
+queen.o : queen.cpp queen.hpp
+	$(CXX) $(CXXFLAGS) -c queen.cpp
 
 .PHONY : clean
 clean :
-	$(RM) task2 $(objects)
+	$(RM) task3 $(objects)
