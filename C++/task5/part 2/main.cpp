@@ -36,7 +36,9 @@ int main() {
         node* newNode = new node(word);
 
         if (linkedListMap.count(word.size()) > 0) {
-            linkedListMap[word.size()].append(newNode);
+            if (!(linkedListMap[word.size()].isIn(word))) {
+                linkedListMap[word.size()].append(newNode);
+            }
         }
         else {
             linkedListMap[word.size()] = linked_list();

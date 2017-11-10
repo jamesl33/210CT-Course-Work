@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "linked_list.hpp"
 
 void linked_list::push(node* newNode) {
@@ -23,6 +24,17 @@ void linked_list::append(node* newNode) {
         tail -> next = newNode;
         tail = newNode;
     }
+}
+
+bool linked_list::isIn(std::string& word) {
+    node* currentNode = head;
+    while (currentNode != nullptr) {
+        if (currentNode -> data == word) {
+            return true;
+        }
+        currentNode = currentNode -> next;
+    }
+    return false;
 }
 
 int linked_list::size() {

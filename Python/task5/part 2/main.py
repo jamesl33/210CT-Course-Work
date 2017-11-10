@@ -18,7 +18,8 @@ with open('paragraph.txt') as file:
             linkedLists[len(word)] = linked_list()
             linkedLists[len(word)].append(newNode)
         else:
-            linkedLists[len(word)].append(newNode)
+            if not linkedLists[len(word)].isIn(word):
+                linkedLists[len(word)].append(newNode)
 
     for i in linkedLists:
         linkedLists[i].sort()

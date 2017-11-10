@@ -24,6 +24,14 @@ class linked_list:
         self.remove(node)
         return node
 
+    def isIn(self, word):
+        currentNode = self.first_node
+        while currentNode:
+            if currentNode.data == word:
+                return True
+            currentNode = currentNode.next_node
+        return False
+
     def append(self, new_node):
         if self.first_node == None and self.last_node == None:
             self.first_node = new_node

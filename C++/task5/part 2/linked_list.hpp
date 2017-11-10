@@ -1,3 +1,4 @@
+#include <string>
 #include "node.hpp"
 
 class linked_list {
@@ -17,6 +18,7 @@ class linked_list {
         int size();
         void swap(node& a, node& b);
         void sort();
+        bool isIn(std::string& word);
 
         friend std::ostream& operator<<(std::ostream& os, linked_list& list);
 };
