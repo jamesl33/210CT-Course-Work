@@ -3,11 +3,10 @@
 from node import node
 
 class linked_list:
-    def __init__(self, new_node=None):
-        if new_node != None:
-            assert isinstance(new_node, node)
-        self.first_node = new_node
-        self.last_node = new_node
+    def __init__(self):
+        self.size = 0
+        self.first_node = None
+        self.last_node = None
 
     def push(self, new_node):
         if self.first_node == None and self.last_node == None:
@@ -18,6 +17,7 @@ class linked_list:
             new_node.previous_node = None
             self.first_node.previous_node = new_node
             self.first_node = new_node
+        self.size += 1
 
     def pop(self):
         node = self.last_node
@@ -41,6 +41,7 @@ class linked_list:
             new_node.previous_node = self.last_node
             self.last_node.next_node = new_node
             self.last_node = new_node
+        self.size += 1
 
     def remove(self, node):
         if node == self.first_node:
@@ -53,14 +54,10 @@ class linked_list:
             previous_node = node.previous_node
             next_node.previous_node = previous_node
             previous_node.next_node = next_node
+        self.size -= 1
 
-    def size(self):
-        node = self.first_node
-        count = 0
-        while node:
-            count += 1
-            node = node.next_node
-        return count
+    def length(self):
+        return self.size
 
     def swap(self, a, b):
         tmpData = b.data

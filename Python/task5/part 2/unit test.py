@@ -8,14 +8,14 @@ class UnitTest(unittest.TestCase):
         node1 = node('test')
         lst = linked_list()
         lst.append(node1)
-        self.assertTrue(lst.size() == 1)
+        self.assertTrue(lst.length() == 1)
 
     def test_pop(self):
         node1 = node('test')
         lst = linked_list()
         lst.append(node1)
         lst.pop()
-        self.assertTrue(lst.size() == 0)
+        self.assertTrue(lst.length() == 0)
 
     def test_swap(self):
         node1 = node('test')
