@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-from binary_tree import binary_tree
-from node import node
+import tree
 
 class database:
     def __init__(self, students):
@@ -9,11 +8,11 @@ class database:
 
         for student in students:
             for value in student.data:
-                newNode = node((student.data[value], student))
+                newNode = tree.node((student.data[value], student))
                 if value in self.data:
                     self.data[value].insert(newNode)
                 else:
-                    self.data[value] = binary_tree()
+                    self.data[value] = tree.binary_tree()
                     self.data[value].insert(newNode)
 
     def convert_node_list(self, nodeList):
