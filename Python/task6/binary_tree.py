@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys
 
 class binary_tree:
     def __init__(self):
@@ -14,6 +15,24 @@ class binary_tree:
     def minimum(self):
         ''' helper function to get the minimum value from the tree '''
         currentNode = self.root
+        while currentNode:
+            if currentNode.leftNode != None:
+                currentNode = currentNode.leftNode
+            else:
+                break
+        return currentNode
+
+    def max_left(self):
+        currentNode = self.root.leftNode
+        while currentNode:
+            if currentNode.rightNode != None:
+                currentNode = currentNode.rightNode
+            else:
+                break
+        return currentNode
+
+    def min_right(self):
+        currentNode = self.root.rightNode
         while currentNode:
             if currentNode.leftNode != None:
                 currentNode = currentNode.leftNode
@@ -43,7 +62,7 @@ class binary_tree:
         while currentNode:
             if newNode.value < currentNode.value:
                 if currentNode.leftNode == None:
-                    newNode.parentNode = currentNode
+                    newNode.parent = currentNode
                     currentNode.leftNode = newNode
                     self.size += 1
                     break
@@ -51,7 +70,7 @@ class binary_tree:
                     currentNode = currentNode.leftNode
             else:
                 if currentNode.rightNode == None:
-                    newNode.parentNode = currentNode
+                    newNode.parent = currentNode
                     currentNode.rightNode = newNode
                     self.size += 1
                     break
@@ -60,18 +79,20 @@ class binary_tree:
 
     def remove_leaf(self, targetNode):
         ''' function to remove leaf node by address '''
-        parent = targetNode.parentNode
-        if parent.leftNode == targetNode:
-            parent.leftNode = None
+        assert(targetNode.leftNode == None and targetNode.rightNode == None)
+        parentNode = targetNode.parent
+        targetNode.parent = None
+        if parentNode.leftNode == targetNode:
+            parentNode.leftNode = None
         else:
-            parent.rightNode = None
+            parentNode.rightNode = None
 
     def count_children(self, targetNode):
         ''' function returns number of children a node has '''
         count = 0
         if targetNode.leftNode != None:
             count += 1
-        elif targetNode.rightNode != None:
+        if targetNode.rightNode != None:
             count += 1
         return count
 
@@ -85,11 +106,48 @@ class binary_tree:
 
     def remove(self, targetId):
         ''' function to delete a node by the id '''
-        pass
+        try:
+            targetNode = self.find(targetId)[0]
+        except IndexError:
+            print('"{0}" is not in the databse'.format(targetId))
+            sys.exit(0)
+        childCount = self.count_children(targetNode)
+        if self.root == targetNode:
+            if childCount == 0:
+                self.root = None
+            elif childCount == 1:
+                if self.root.leftNode != None:
+                    self.root = self.root.leftNode
+                elif self.root.rightNode != None:
+                    self.root = self.root.rightNode
+            elif childCount == 2:
+                swapTarget = self.min_right()
+                if swapTarget == None:
+                    swapTarget = self.max_left()
+                self.swap(self.root, swapTarget)
+                self.remove(swapTarget.value)
+            return
+        if childCount == 0:
+            self.remove_leaf(targetNode)
+        elif childCount == 1:
+            if targetNode.leftNode != None:
+                self.swap(targetNode, targetNode.leftNode)
+                self.remove(targetNode.leftNode.value)
+            elif targetNode.rightNode != None:
+                self.swap(targetNode, targetNode.rightNode)
+                self.remove(targetNode.rightNode.value)
+        else:
+            swapTarget = self.min_right()
+            if swapTarget == None:
+                swapTarget = self.max_left()
+            self.swap(targetNode, swapTarget)
+            self.remove_leaf(swapTarget)
 
     def order(self, inOrder=True, preOrder=False, postOrder=False, currentNode=None, contents=None):
         ''' returns a python list with the contents of the binary tree in either pre/post/in order '''
         if currentNode == None:
+            if self.root == None:
+                return list()
             currentNode = self.root
             contents = []
         if preOrder:
@@ -113,7 +171,7 @@ class binary_tree:
             self.find(target, currentNode.leftNode, contents)
 
         if currentNode.value == target:
-            contents.append(currentNode.owner)
+            contents.append(currentNode)
 
         if currentNode.rightNode != None:
             self.find(target, currentNode.rightNode, contents)

@@ -16,6 +16,12 @@ class database:
                     self.data[value] = binary_tree()
                     self.data[value].insert(newNode)
 
+    def convert_node_list(self, nodeList):
+        studentList = []
+        for i in nodeList:
+            studentList.append(i.owner)
+        return studentList
+
     def find(self, target, where):
         if where not in self.data:
             return
@@ -23,7 +29,7 @@ class database:
             return self.data[where].order()
 
         assert(self.data[where].type == type(target))
-        return self.data[where].find(target)
+        return self.convert_node_list(self.data[where].find(target))
 
     def update(self, target, where, content):
         if where == 'uniqueId':
