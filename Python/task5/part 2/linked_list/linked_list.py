@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-from node import node
-
 class linked_list:
     def __init__(self):
         self.size = 0

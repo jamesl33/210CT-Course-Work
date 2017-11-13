@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
-from linked_list import linked_list
-from node import node
-import string
+import string, linked_list
 
 with open('paragraph.txt') as file:
     linkedLists = {}
@@ -12,10 +10,10 @@ with open('paragraph.txt') as file:
         word = word.translate(str.maketrans('', '', string.punctuation))
         word = word.lower()
 
-        newNode = node(word)
+        newNode = linked_list.node(word)
 
         if len(word) not in linkedLists:
-            linkedLists[len(word)] = linked_list()
+            linkedLists[len(word)] = linked_list.linked_list()
             linkedLists[len(word)].append(newNode)
         else:
             if not linkedLists[len(word)].isIn(word):
