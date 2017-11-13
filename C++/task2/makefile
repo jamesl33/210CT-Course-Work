@@ -3,8 +3,8 @@ CXXFLAGS = --std=c++11
 RM=rm -f
 objects = main.o queen.o
 
-task3 : $(objects)
-	$(CXX) $(CXXFLAGS) -o task3 $(objects)
+task2 : $(objects)
+	$(CXX) $(CXXFLAGS) -o task2 $(objects)
 
 main.o : main.cpp queen.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
@@ -14,4 +14,4 @@ queen.o : queen.cpp queen.hpp
 
 .PHONY : clean
 clean :
-	$(RM) task3 $(objects)
+	$(RM) task2 $(objects)

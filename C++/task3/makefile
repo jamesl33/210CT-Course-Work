@@ -3,8 +3,8 @@ CXXFLAGS = --std=c++11
 RM=rm -f
 objects = main.o cube.o
 
-task4 : $(objects)
-	$(CXX) $(CXXFLAGS) -o task4 $(objects)
+task3 : $(objects)
+	$(CXX) $(CXXFLAGS) -o task3 $(objects)
 
 main.o : main.cpp ../catch.hpp cube.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
@@ -14,4 +14,4 @@ cube.o : cube.cpp cube.hpp
 
 .PHONY : clean
 clean :
-	$(RM) task4 $(objects)
+	$(RM) task3 $(objects)

@@ -3,8 +3,8 @@ CXXFLAGS = --std=c++11
 RM=rm -f
 objects = main.o lorry.o material.o
 
-task2 : $(objects)
-	$(CXX) $(CXXFLAGS) $(objects) -o task2
+task1p2 : $(objects)
+	$(CXX) $(CXXFLAGS) $(objects) -o task1p2
 
 main.o : main.cpp material.hpp lorry.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
@@ -17,4 +17,4 @@ material.o : material.cpp material.hpp
 
 .PHONY : clean
 clean :
-	$(RM) task2 $(objects)
+	$(RM) task1p2 $(objects)
