@@ -36,7 +36,14 @@ class UnitTest(unittest.TestCase):
             self.assertTrue(answer in graduatedStudents)
 
     def test_list_undergrads_by_class_in_lex_order(self):
-        pass
+        lex = []
+        students = self.db.find('all', 'name')
+        classes = self.db.find('all', 'classId')
+        for i in range(len(students)):
+            for j in range(len(classes)):
+                if students[i].owner == classes[j].owner:
+                    lex.append('{0}: {1}'.format(classes[j], students[i]))
+        self.assertEqual(lex, ['121COM: Devin', '290COM: Ellen', '290COM: Rob', '220CT: Ryan', '220CT: Taylor'])
 
     def test_remove_by_id(self):
         ''' self contained due to the fact that the other unit tests modify the students '''
