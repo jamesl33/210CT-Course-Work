@@ -30,6 +30,12 @@ class database:
         assert(self.data[where].type == type(target))
         return self.convert_node_list(self.data[where].find(target))
 
+    def remove_by_id(self, targetId):
+        for key in self.data:
+            for node in self.data[key].order():
+                if node.owner.data['uniqueId'] == targetId:
+                    self.data[key].remove(node)
+
     def update(self, target, where, content):
         if where == 'uniqueId':
             raise ValueError('Cannot update the uniqueId')
@@ -39,4 +45,4 @@ class database:
             student.data[where] = content
 
     def list(self, where):
-        return self.data[where].order()
+        return self.data[where].order(True)
