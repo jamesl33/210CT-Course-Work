@@ -69,36 +69,20 @@ class binary_tree:
     def remove(self, targetNode):
         ''' function to delete a node by the id '''
         childCount = self.count_children(targetNode)
-        if self.root == targetNode:
-            if childCount == 0:
+        if childCount == 0:
+            if self.root == targetNode:
                 self.root = None
-            elif childCount == 1:
+            else:
+                self.remove_leaf(targetNode)
+        elif childCount == 1:
+            if self.root == targetNode:
                 if targetNode.leftNode != None:
                     targetNode.leftNode.parent = None
                     self.root = targetNode.leftNode
                 elif targetNode.rightNode != None:
                     targetNode.rightNode.parent = None
                     self.root = targetNode.rightNode
-            elif childCount == 2:
-                if targetNode.leftNode != None:
-                    swapTarget = self.max_left()
-                elif targetNode.rightNode != None:
-                    swapTarget = self.min_right()
-
-                self.remove_leaf(swapTarget)
-                swapTarget.parent = None
-                swapTarget.leftNode = targetNode.leftNode
-                swapTarget.rightNode = targetNode.rightNode
-                self.root = swapTarget
-
-                if targetNode.leftNode != None:
-                    targetNode.leftNode.parent = swapTarget
-                if targetNode.rightNode != None:
-                    targetNode.rightNode.parent = swapTarget
-        else:
-            if childCount == 0:
-                self.remove_leaf(targetNode)
-            elif childCount == 1:
+            else:
                 if targetNode.leftNode != None:
                     parent = targetNode.parent
                     targetNode.leftNode.parent = parent
@@ -118,7 +102,24 @@ class binary_tree:
 
                     if parent.rightNode == targetNode:
                         parent.rightNode = targetNode.rightNode
-            elif childCount == 2:
+        elif childCount == 2:
+            if self.root == targetNode:
+                if targetNode.leftNode != None:
+                    swapTarget = self.max_left()
+                elif targetNode.rightNode != None:
+                    swapTarget = self.min_right()
+
+                self.remove_leaf(swapTarget)
+                swapTarget.parent = None
+                swapTarget.leftNode = targetNode.leftNode
+                swapTarget.rightNode = targetNode.rightNode
+                self.root = swapTarget
+
+                if targetNode.leftNode != None:
+                    targetNode.leftNode.parent = swapTarget
+                if targetNode.rightNode != None:
+                    targetNode.rightNode.parent = swapTarget
+            else:
                 if targetNode < self.root:
                     swapTarget = self.max_left()
                 else:
