@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import queue
+from node import node
 
 class graph:
     def __init__(self, nodes):
@@ -8,6 +9,8 @@ class graph:
 
         :param nodes: List of nodes to be added to the graph
         """
+        assert(isinstance(nodes, list))
+
         self.vertices = set()
         self.edges = {}
 
@@ -44,17 +47,19 @@ class graph:
 
         :param node: Adds a node to the graph using the helper functions '_add_edge' and '_add_vertex'
         """
-        self._add_vertex(node.value)
-        for connection in node.connections:
-            self._add_edge(node.value, connection)
+        assert(isinstance(targetNode, node))
+        self._add_vertex(targetNode.value)
+        for connection in targetNode.connections:
+            self._add_edge(targetNode.value, connection)
 
-    def remove_node(self, node):
+    def remove_node(self, targetNode):
         """remove_node
 
         :param node: Removes a node from the graph using the help functions '_remove_edge' and '_remove_vertex'
         """
-        self._remove_vertex(node.value)
-        self._remove_edge(node.value)
+        assert(isinstance(targetNode, node))
+        self._remove_vertex(targetNode.value)
+        self._remove_edge(targetNode.value)
 
     def _remove_vertex(self, value):
         self.vertices.remove(value)
