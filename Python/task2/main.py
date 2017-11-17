@@ -3,8 +3,8 @@
 from queen import queen
 
 for i in range(8):
-	solver = queen(8)
-	print("Solution {0} - {1}".format(i + 1, solver.place_queen(i)))
+    solver = queen(8)
+    print("Solution {0} - {1}".format(i + 1, solver.place_queen(i)))
 
 ################# Pseudo Code #################
 
