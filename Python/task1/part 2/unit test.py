@@ -14,10 +14,10 @@ class UnitTest(unittest.TestCase):
 
         materials = [gold, plastic, copper]
         lorry1 = lorry(10)
-        lorry1.pickup_deliviery(materials)
+        lorry1.pickup_delivery(materials)
 
-        self.assertEqual(lorry1.get_cargo(), known_correct_values)
-        self.assertEqual(lorry1.get_loadComposition(), 790)
+        self.assertEqual(lorry1.cargo, known_correct_values)
+        self.assertEqual(lorry1.loadComposition, 790)
 
     def test_extra(self):
         known_correct_values = {"Ruby": 2, "Copper": 7, "Diamond": 1, "Plastic": 1, "Gold": 4}
@@ -31,10 +31,10 @@ class UnitTest(unittest.TestCase):
         materials = [gold, plastic, copper, diamond, ruby]
 
         lorry1 = lorry(15)
-        lorry1.pickup_deliviery(materials)
+        lorry1.pickup_delivery(materials)
 
-        self.assertEqual(lorry1.get_cargo(), known_correct_values)
-        self.assertEqual(lorry1.get_loadComposition(), 2905)
+        self.assertEqual(lorry1.cargo, known_correct_values)
+        self.assertEqual(lorry1.loadComposition, 2905)
 
 if __name__ == '__main__':
     unittest.main()
