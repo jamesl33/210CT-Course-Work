@@ -105,4 +105,4 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False'])
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()
