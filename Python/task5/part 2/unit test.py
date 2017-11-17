@@ -8,22 +8,22 @@ class UnitTest(unittest.TestCase):
         node1 = node('test')
         lst = linked_list()
         lst.append(node1)
-        self.assertTrue(lst.length() == 1)
+        self.assertTrue(len(lst) == 1)
 
     def test_pop(self):
         node1 = node('test')
         lst = linked_list()
         lst.append(node1)
         lst.pop()
-        self.assertTrue(lst.length() == 0)
+        self.assertTrue(len(lst) == 0)
 
-    def test_swap(self):
+    def test__swap(self):
         node1 = node('test')
         node2 = node('anotherTest')
         lst = linked_list()
         lst.append(node1)
         lst.append(node2)
-        lst.swap(node1, node2)
+        lst._swap(node1, node2)
 
         currentNode = lst.first_node
         while currentNode:

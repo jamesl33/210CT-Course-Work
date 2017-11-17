@@ -6,7 +6,6 @@ with open('paragraph.txt') as file:
     linkedLists = {}
     words = file.read().split()
     for word in words:
-        # In this case we are not worried about punctuation and capital letters
         word = word.translate(str.maketrans('', '', string.punctuation))
         word = word.lower()
 
