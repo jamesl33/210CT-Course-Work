@@ -3,7 +3,7 @@
 from set_finding import *
 
 array = create_array(8, 8)
-numberSet = find_largest_set(array) # gets the list of number sets in the matrix (create array arguments are interchangeable)
+numberSet = find_largest_set(array)
 
 for i in range(len(numberSet)):
     if len(numberSet[i]) == 0:
