@@ -60,7 +60,7 @@ class UnitTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             g.topological_sort()
 
-    def test_djikstra(self):
+    def test_dijkstra(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         n1 = weighted_node(1, [2], {(1, 2): 2})
         n2 = weighted_node(2, [3], {(2, 3): 3})
@@ -68,10 +68,10 @@ class UnitTest(unittest.TestCase):
         n4 = weighted_node(4, [5], {(4, 5): 14})
         n5 = weighted_node(5, [3], {(5, 3): 12})
         g = weighted_graph([n0, n1, n2, n3, n4, n5])
-        self.assertEqual(g._djikstra(0, 1), (1, [0, 1]))
-        self.assertEqual(g._djikstra(0, 2), (3, [0, 1, 2]))
-        self.assertEqual(g._djikstra(0, 3), (6, [0, 1, 2, 3]))
-        self.assertEqual(g._djikstra(4, 5), (14, [4, 5]))
+        self.assertEqual(g._dijkstra(0, 1), (1, [0, 1]))
+        self.assertEqual(g._dijkstra(0, 2), (3, [0, 1, 2]))
+        self.assertEqual(g._dijkstra(0, 3), (6, [0, 1, 2, 3]))
+        self.assertEqual(g._dijkstra(4, 5), (14, [4, 5]))
 
     def test_shortest_path(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
@@ -92,6 +92,19 @@ class UnitTest(unittest.TestCase):
         n5 = weighted_node(5, [3], {(5, 3): 12})
         g = weighted_graph([n0, n1, n2, n3, n4, n5])
         self.assertEqual(g.longest_path(0, 3), 'Path: [0, 4, 5, 3]\nDistance traveled: 37')
+
+    def test_longest_path_extra(self):
+        n0 = weighted_node(5, [11, 9], {(5, 11): 4, (5, 9): 1})
+        n1 = weighted_node(11, [2, 9, 10], {(11, 2): 6, (11, 9): 2, (11, 10): 9})
+        n2 = weighted_node(2, [5], {(2, 5): 2})
+        n3 = weighted_node(7, [8, 11], {(7, 8): 2, (7, 11): 5})
+        n4 = weighted_node(8, [9], {(8, 9): 5})
+        n5 = weighted_node(9, [2], {(9, 2): 4})
+        n6 = weighted_node(3, [8, 10], {(3, 8): 2, (3, 10): 7})
+        n7 = weighted_node(10, [9], {(10, 9): 4})
+        g = weighted_graph([n0, n1, n2, n3, n4, n5, n6, n7])
+        self.assertEqual(g.longest_path(5, 9), 'Path: [5, 11, 9]\nDistance traveled: 6')
+        self.assertEqual(g.shortest_path(5, 9), 'Path: [5, 9]\nDistance traveled: 1')
 
     def test_shortest_path_error(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})

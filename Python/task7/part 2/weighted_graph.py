@@ -64,7 +64,7 @@ class weighted_graph(graph):
         return topologicalOrder
 
     def longest_path(self, start, end):
-        """longest_path: Uses _djikstra to calculate longest path by negating weights
+        """longest_path: Uses _dijkstra to calculate longest path by negating weights
 
         :param start: Integer representing the start node
         :param end: Integer representing the end node
@@ -73,25 +73,28 @@ class weighted_graph(graph):
             for weight in self.weights:
                 self.weights[weight] = self.weights[weight] * -1
         _invert()
-        distance, path = self._djikstra(start, end)
+        distance, path = self._dijkstra(start, end)
         _invert()
         if math.isinf(distance):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
         return 'Path: {0}\nDistance traveled: {1}'.format(path, distance * -1)
 
     def shortest_path(self, start, end):
-        """shortest_path: Use _djikstra to calculate shortest path
+        """shortest_path: Use _dijkstra to calculate shortest path
 
         :param start: Integer representing the start node
         :param end: Integer representing the end node
         """
-        distance, path = self._djikstra(start, end)
+        distance, path = self._dijkstra(start, end)
         if math.isinf(distance):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
         return 'Path: {0}\nDistance traveled: {1}'.format(path, distance)
 
-    def _djikstra(self, start, end):
-        """_djikstra: Use Dijkstra algorithm to get the shortest path
+    def _dijkstra(self, start, end):
+        """_dijkstra: Use dijkstra algorithm to get the shortest path
+        As I understand Dijkstras algorithm can't be used with negative weights. However I have read
+        in some cases it does work with a DAG and all negative numbers. I have done some unit testing
+        and it does seem to be working.
 
         :param start: Integer representing the start node
         :param end: Integer representing the end node
