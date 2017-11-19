@@ -60,6 +60,19 @@ class UnitTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             g.topological_sort()
 
+    def test_djikstra(self):
+        n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
+        n1 = weighted_node(1, [2], {(1, 2): 2})
+        n2 = weighted_node(2, [3], {(2, 3): 3})
+        n3 = weighted_node(3, [], {})
+        n4 = weighted_node(4, [5], {(4, 5): 14})
+        n5 = weighted_node(5, [3], {(5, 3): 12})
+        g = weighted_graph([n0, n1, n2, n3, n4, n5])
+        self.assertEqual(g._djikstra(0, 1), (1, [0, 1]))
+        self.assertEqual(g._djikstra(0, 2), (3, [0, 1, 2]))
+        self.assertEqual(g._djikstra(0, 3), (6, [0, 1, 2, 3]))
+        self.assertEqual(g._djikstra(4, 5), (14, [4, 5]))
+
     def test_shortest_path(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         n1 = weighted_node(1, [2], {(1, 2): 2})
@@ -68,7 +81,7 @@ class UnitTest(unittest.TestCase):
         n4 = weighted_node(4, [5], {(4, 5): 14})
         n5 = weighted_node(5, [3], {(5, 3): 12})
         g = weighted_graph([n0, n1, n2, n3, n4, n5])
-        self.assertEqual(g.shortest_path(0, 3), 6)
+        self.assertEqual(g.shortest_path(0, 3), 'Path: [0, 1, 2, 3]\nDistance traveled: 6')
 
     def test_longest_path(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
@@ -78,20 +91,20 @@ class UnitTest(unittest.TestCase):
         n4 = weighted_node(4, [5], {(4, 5): 14})
         n5 = weighted_node(5, [3], {(5, 3): 12})
         g = weighted_graph([n0, n1, n2, n3, n4, n5])
-        self.assertEqual(g.longest_path(0, 3), 37)
+        self.assertEqual(g.longest_path(0, 3), 'Path: [0, 4, 5, 3]\nDistance traveled: 37')
 
     def test_shortest_path_error(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         n1 = weighted_node(1, [2], {(1, 2): 2})
         g = weighted_graph([n0, n1])
-        with self.assertRaises(ValueError):
+        with self.assertRaises(AssertionError):
             g.shortest_path(0, 2)
 
     def test_longest_path_error(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         n1 = weighted_node(1, [2], {(1, 2): 2})
         g = weighted_graph([n0, n1])
-        with self.assertRaises(ValueError):
+        with self.assertRaises(AssertionError):
             g.longest_path(0, 2)
 
 if __name__ == '__main__':

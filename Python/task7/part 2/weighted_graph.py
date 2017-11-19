@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import math
 from graph import graph
 from weighted_node import weighted_node
 
@@ -63,58 +64,70 @@ class weighted_graph(graph):
         return topologicalOrder
 
     def longest_path(self, start, end):
-        """longest_path: Function which uses '_shortest_distances_from' to find the longest path from node 'start' to node 'end'
-        it does this by inverting the path weights using '_invert_weights'.
+        """longest_path: Uses _djikstra to calculate longest path by negating weights
 
-        :param start: Integer value of the node which you want to start at
-        :param end: Integer value of the node which you want to end at
+        :param start: Integer representing the start node
+        :param end: Integer representing the end node
         """
-        if start not in self.vertices or end not in self.vertices:
-            raise ValueError('Start or End node not in graph')
-
-        def _invert_weights():
+        def _invert():
             for weight in self.weights:
                 self.weights[weight] = self.weights[weight] * -1
-
-        _invert_weights()
-        longestPath = self._shortest_distances_from(start)[end]
-        _invert_weights()
-        if longestPath == None:
-            raise ValueError('There is not path from {0} to {1}'.format(start, end))
-        return longestPath * -1
+        _invert()
+        distance, path = self._djikstra(start, end)
+        _invert()
+        if math.isinf(distance):
+            raise ValueError('There is no path from {0} to {1}'.format(start, end))
+        return 'Path: {0}\nDistance traveled: {1}'.format(path, distance * -1)
 
     def shortest_path(self, start, end):
-        """shortest_path: Function which uses '_shortest_distances_from' to find the shortest path from node 'start' to node 'end'
+        """shortest_path: Use _djikstra to calculate shortest path
 
-        :param start: Integer value of the node which you want to start at
-        :param end: Integer value of the node which you want to end at
+        :param start: Integer representing the start node
+        :param end: Integer representing the end node
         """
-        if start not in self.vertices or end not in self.vertices:
-            raise ValueError('Start or End node not in graph')
-        path = self._shortest_distances_from(start)[end]
-        if path == None:
-            raise ValueError('There is not path from {0} to {1}'.format(start, end))
-        return path
+        distance, path = self._djikstra(start, end)
+        if math.isinf(distance):
+            raise ValueError('There is no path from {0} to {1}'.format(start, end))
+        return 'Path: {0}\nDistance traveled: {1}'.format(path, distance)
 
-    def _shortest_distances_from(self, start):
-        """_shortest_distances_from: Generates a dictionary with the distance to each node from 'start'
+    def _djikstra(self, start, end):
+        """_djikstra: Use Dijkstra algorithm to get the shortest path
 
-        :param start: Integer value representing the starting node
+        :param start: Integer representing the start node
+        :param end: Integer representing the end node
+        :return Tuple: Tuple (shortest distance, sorted path)
         """
-        distances = {}
-        for vertex in self.vertices:
-            distances[vertex] = None
+        assert(start in self.vertices and end in self.vertices)
+        visited = set()
+        distances = dict.fromkeys(list(self.vertices), math.inf)
+        path = dict.fromkeys(list(self.vertices), None)
         distances[start] = 0
-        for vertex in self.topological_sort():
-            if distances[vertex] != None:
-                if vertex in self.edges:
-                    for neighbour in self.edges[vertex]:
-                        newDist = distances[vertex] + self.weights[(vertex, neighbour)]
-                        if distances[neighbour] == None:
-                            distances[neighbour] = newDist
-                        else:
-                            distances[neighbour] = min(distances[neighbour], newDist)
-        return distances
+        while visited != self.vertices:
+            vertex = min(set(distances.keys()) - visited)
+            if vertex in self.edges:
+                for neighbour in self.edges[vertex]:
+                    testPath = distances[vertex] + self.weights[(vertex, neighbour)]
+                    if testPath < distances[neighbour]:
+                        distances[neighbour] = testPath
+                        path[neighbour] = vertex
+            visited.add(vertex)
+
+        def _short_path(path, end):
+            """_short_path
+
+            :param path: Dictionary created above
+            :param end: Integer representing the end node
+            :return List: Shortest path
+            """
+            shortPath = []
+            node = end
+            while path[node] != None:
+                shortPath.insert(0, node)
+                node = path[node]
+            shortPath.insert(0, node)
+            return shortPath
+
+        return distances[end], _short_path(path, end)
 
     def _get_indegrees(self):
         """_get_indegrees: Function which returns indegrees of all vertices
