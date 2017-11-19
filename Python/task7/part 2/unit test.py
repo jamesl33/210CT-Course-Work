@@ -41,6 +41,7 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(g._get_indegrees(), {0: 2, 1: 2, 2: 1, 3: 1, 4: 0, 5: 0})
 
     def test_topological_sort(self):
+        # There is a picture in this folder showing the visual representation of this graph
         n0 = weighted_node(5, [11], {(5, 11): 1})
         n1 = weighted_node(11, [2, 9, 10], {(11, 2): 1, (11, 9): 1, (11, 10): 1})
         n2 = weighted_node(2, [], {})

@@ -3,6 +3,8 @@
 from weighted_graph import weighted_graph
 from weighted_node import weighted_node
 
+# Example of node attributes
+# n0 = (Value: 0, ConnectedTo: node1, node4, Weights((n0, n1): 1, (n1, n2): 2)
 n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
 n1 = weighted_node(1, [2], {(1, 2): 2})
 n2 = weighted_node(2, [3], {(2, 3): 3})
