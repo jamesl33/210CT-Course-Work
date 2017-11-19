@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import queue
 from node import node
 
 class graph:
@@ -42,7 +41,7 @@ class graph:
         for vertex in self.vertices:
             print('{0}: {1}'.format(vertex, self.edges[vertex]))
 
-    def add_node(self, node):
+    def add_node(self, targetNode):
         """add_node
 
         :param node: Adds a node to the graph using the helper functions '_add_edge' and '_add_vertex'
