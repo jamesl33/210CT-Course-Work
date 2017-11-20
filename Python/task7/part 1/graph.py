@@ -16,23 +16,26 @@ class graph:
         for newNode in nodes:
             self.add_node(newNode)
 
-    def is_connected(self, visited=None, start=None):
-        """is_connected
+    def is_connected(self):
+        visited = set()
+        start = next(iter(self.vertices))
 
-        :param visited: Set of visited nodes
-        :param start: Node where we start if none is supplied the first one in 'vertices' will be used
-        """
-        if visited is None and start is None:
-            visited = set()
-            start = next(iter(self.vertices))
-        visited.add(start)
-        if len(visited) == len(self.vertices):
-            return True
-        for vertex in self.edges[start]:
-            if vertex not in visited:
-                if self.is_connected(visited, vertex):
-                    return True
-        return False
+        def _is_connected(visited, start):
+            """_is_connected
+
+            :param visited: Set of visited nodes
+            :param start: Node where we start if none is supplied the first one in 'vertices' will be used
+            """
+            visited.add(start)
+            if len(visited) == len(self.vertices):
+                return True
+            for vertex in self.edges[start]:
+                if vertex not in visited:
+                    if _is_connected(visited, vertex):
+                        return True
+            return False
+
+        return _is_connected(visited, start)
 
     def display(self):
         """display
