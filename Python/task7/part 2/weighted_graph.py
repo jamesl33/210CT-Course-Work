@@ -64,7 +64,7 @@ class weighted_graph(graph):
         return topologicalOrder
 
     def longest_path(self, start, end):
-        """longest_path: Uses _dijkstra to calculate longest path by negating weights
+        """longest_path: Uses _belmon_ford to calculate longest path by negating weights
 
         :param start: Integer representing the start node
         :param end: Integer representing the end node
@@ -73,7 +73,7 @@ class weighted_graph(graph):
             for weight in self.weights:
                 self.weights[weight] = self.weights[weight] * -1
         _invert()
-        distance, path = self._dijkstra(start, end)
+        distance, path = self._belmon_ford(start, end)
         _invert()
         if math.isinf(distance):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
@@ -90,11 +90,38 @@ class weighted_graph(graph):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
         return 'Path: {0}\nDistance traveled: {1}'.format(path, distance)
 
+    def _belmon_ford(self, start, end):
+        """_belmon_ford: Use Belmon ford to calculate the longest path. This is needed because Dijkstra's
+        weights must be non-negative
+
+        :param start: Integer representing the start node
+        :param end: Integer representing the end node
+        :return Tuple: Tuple (shortest distance, sorted path)
+        """
+        assert(start in self.vertices and end in self.vertices)
+        distances = dict.fromkeys(list(self.vertices), math.inf)
+        predecessors = dict.fromkeys(list(self.vertices), None)
+        distances[start] = 0
+        for i in range(len(self.vertices)):
+            for vertex in self.vertices:
+                if vertex in self.edges:
+                    for neighbour in self.edges[vertex]:
+                        if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
+                            distances[neighbour] = distances[vertex] + self.weights[(vertex, neighbour)]
+                            predecessors[neighbour] = vertex
+        for vertex in self.vertices:
+            if vertex in self.edges:
+                for neighbour in self.edges:
+                    try:
+                        if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
+                            raise TypeError('This graph contains a negative cycle')
+                    except KeyError:
+                        pass
+
+        return distances[end], self._short_path(predecessors, end)
+
     def _dijkstra(self, start, end):
         """_dijkstra: Use dijkstra algorithm to get the shortest path
-        As I understand Dijkstras algorithm can't be used with negative weights. However I have read
-        in some cases it does work with a DAG and all negative numbers. I have done some unit testing
-        and it does seem to be working.
 
         :param start: Integer representing the start node
         :param end: Integer representing the end node
@@ -115,22 +142,22 @@ class weighted_graph(graph):
                         path[neighbour] = vertex
             visited.add(vertex)
 
-        def _short_path(path, end):
-            """_short_path
+        return distances[end], self._short_path(path, end)
 
-            :param path: Dictionary created above
-            :param end: Integer representing the end node
-            :return List: Shortest path
-            """
-            shortPath = []
-            node = end
-            while path[node] != None:
-                shortPath.insert(0, node)
-                node = path[node]
+    def _short_path(self, path, end):
+        """_short_path
+
+        :param path: Dictionary created above
+        :param end: Integer representing the end node
+        :return List: Shortest path
+        """
+        shortPath = []
+        node = end
+        while path[node] != None:
             shortPath.insert(0, node)
-            return shortPath
-
-        return distances[end], _short_path(path, end)
+            node = path[node]
+        shortPath.insert(0, node)
+        return shortPath
 
     def _get_indegrees(self):
         """_get_indegrees: Function which returns indegrees of all vertices

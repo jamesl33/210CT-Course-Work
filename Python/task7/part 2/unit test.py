@@ -93,7 +93,6 @@ class UnitTest(unittest.TestCase):
         g = weighted_graph([n0, n1, n2, n3, n4, n5])
         self.assertEqual(g.longest_path(0, 3), 'Path: [0, 4, 5, 3]\nDistance traveled: 37')
 
-    def test_longest_path_extra(self):
         n0 = weighted_node(5, [11, 9], {(5, 11): 4, (5, 9): 1})
         n1 = weighted_node(11, [2, 9, 10], {(11, 2): 6, (11, 9): 2, (11, 10): 9})
         n2 = weighted_node(2, [5], {(2, 5): 2})
@@ -103,17 +102,25 @@ class UnitTest(unittest.TestCase):
         n6 = weighted_node(3, [8, 10], {(3, 8): 2, (3, 10): 7})
         n7 = weighted_node(10, [9], {(10, 9): 4})
         g = weighted_graph([n0, n1, n2, n3, n4, n5, n6, n7])
-        self.assertEqual(g.longest_path(5, 9), 'Path: [5, 11, 9]\nDistance traveled: 6')
         self.assertEqual(g.shortest_path(5, 9), 'Path: [5, 9]\nDistance traveled: 1')
 
-    def test_shortest_path_error(self):
+    def test_belmon_negative_cycle(self):
+        n0 = weighted_node(0, [1, 2], {(0, 1): 5, (0, 2): 1})
+        n1 = weighted_node(1, [3], {(1, 3): 3})
+        n2 = weighted_node(2, [1], {(2, 1): -6})
+        n3 = weighted_node(3, [2], {(3, 2): 2})
+        g = weighted_graph([n0, n1, n2, n3])
+        with self.assertRaises(TypeError):
+            g._belmon_ford(0, 3)
+
+    def test_shortest_path_start_end_in_graph(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         n1 = weighted_node(1, [2], {(1, 2): 2})
         g = weighted_graph([n0, n1])
         with self.assertRaises(AssertionError):
             g.shortest_path(0, 2)
 
-    def test_longest_path_error(self):
+    def test_longest_path_start_end_in_graph(self):
         n0 = weighted_node(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         n1 = weighted_node(1, [2], {(1, 2): 2})
         g = weighted_graph([n0, n1])
