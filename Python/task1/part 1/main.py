@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 
-from factorials import *
+from factorials import test_divides
 
-testValues = [(6, 9), (20, 10000), (6, 27), (20, 1000000)]
-for a, b in testValues:
-	print(testIfDivides(a, b)[0])
+def main():
+    """main: Driver code to show that factorial and divides functions work
+    """
+    test_values = [(6, 9), (20, 10000), (6, 27), (20, 1000000)]
+    for num_a, num_b in test_values:
+        print(test_divides(num_a, num_b)[0])
+
+main()
 
 ################# Pseudo Code #################
 

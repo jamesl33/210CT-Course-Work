@@ -1,24 +1,25 @@
-def factorial(n):
+#!/usr/bin/python3
+
+def factorial(num):
     """factorial
 
-    :param n: Number which you would like the factorial of
+    :param num: Number which you would like the factorial of
     """
-    if type(n) != int:
-        raise TypeError('n: needs to be of type integer')
+    assert isinstance(num, int)
 
-    if n == 0:
+    if num == 0:
         return 1
-    else:
-        return n * factorial(n - 1)
+    return num * factorial(num - 1)
 
-def testIfDivides(a, b):
-    """testIfDivides
+def test_divides(num_a, num_b):
+    """test_divides
 
-    :param a: Number we calculate the factorial of and then is tested if divides by 'b' equally
-    :param b: 'a!' is divided by this number
+    :param num_a: Number we calculate the factorial of and then is tested if divides by 'b' equally
+    :param num_b: 'a!' is divided by this number
     """
-    assert(isinstance(a, int))
-    assert(isinstance(b, int))
-    if factorial(a) % b:
-        return("{0} does not divide by {1}!".format(b, a), False)
-    return("{0} divides by {1}!".format(b, a), True)
+    assert isinstance(num_a, int)
+    assert isinstance(num_b, int)
+
+    if factorial(num_a) % num_b:
+        return("{0} does not divide by {1}!".format(num_b, num_a), False)
+    return("{0} divides by {1}!".format(num_b, num_a), True)
