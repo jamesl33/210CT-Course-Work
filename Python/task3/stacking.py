@@ -1,42 +1,42 @@
 #!/usr/bin/python3
 
-def calc_height(stackedList):
+def calc_height(stacked_list):
     """calc_height
 
-    :param stackedList: List of cubes
+    :param stacked_list: List of cubes
     :returns height: height of stacked cubes
     """
     height = 0
-    for cube in stackedList:
-        height += cube.edgeLength
+    for cube in stacked_list:
+        height += cube.edge_length
     return 'The maximum tower height is {0}'.format(height)
 
-def widest_cube(cubeList, stackedList):
+def widest_cube(cube_list, stacked_list):
     """widest_cube
 
-    :param cubeList: List of cube objects
-    :param stackedList: List of current stacked cube objects
+    :param cube_list: List of cube objects
+    :param stacked_list: List of current stacked cube objects
     """
-    widestEdge = 0
-    widestCube = None
+    widest_edge = 0
+    widest_cube = None
     color = None
-    if len(stackedList) != 0:
-        color = stackedList[-1].color
-    for cube in cubeList:
-        if cube.edgeLength > widestEdge and cube.color != color and cube not in stackedList:
-            widestEdge = cube.edgeLength
-            widestCube = cube
-    return widestCube
+    if stacked_list:
+        color = stacked_list[-1].color
+    for cube in cube_list:
+        if cube.edge_length > widest_edge and cube.color != color and cube not in stacked_list:
+            widest_edge = cube.edge_length
+            widest_cube = cube
+    return widest_cube
 
-def stack_cubes(cubeList):
+def stack_cubes(cube_list):
     """stack_cubes
 
-    :param cubeList: List of availble cube objects
+    :param cube_list: List of availble cube objects
     """
-    stackedList = []
-    stackedList.append(widest_cube(cubeList, stackedList))
-    while len(stackedList) != len(cubeList):
-        stackedList.append(widest_cube(cubeList, stackedList))
-        if None in stackedList:
-            return 'You cannot stack these cubes according to the rules'
-    return calc_height(stackedList)
+    stacked_list = []
+    stacked_list.append(widest_cube(cube_list, stacked_list))
+    while len(stacked_list) != len(cube_list):
+        stacked_list.append(widest_cube(cube_list, stacked_list))
+        if None in stacked_list:
+            raise ValueError('You cannot stack these cubes according to the rules')
+    return calc_height(stacked_list)

@@ -1,34 +1,38 @@
 #!/usr/bin/python3
 
-from cube import cube
-from stacking import *
 import unittest
+from cube import Cube
+from stacking import *
 
 class UnitTest(unittest.TestCase):
+    """UnitTest"""
     def test_calc_height(self):
-        cube1 = cube('red', 6)
-        cube2 = cube('blue', 5)
-        stackedList = [cube1, cube2]
-        self.assertEqual(calc_height(stackedList), 'The maximum tower height is 11')
+        """test_calc_height: Testing calculate_height function"""
+        cube1 = Cube('red', 6)
+        cube2 = Cube('blue', 5)
+        stacked_list = [cube1, cube2]
+        self.assertEqual(calc_height(stacked_list), 'The maximum tower height is 11')
 
     def test_failure(self):
-        cube1 = cube('red', 5)
-        cube2 = cube('red', 5)
-        cubeList = [cube1, cube2]
-        self.assertEqual(stack_cubes(cubeList), 'You cannot stack these cubes according to the rules')
+        """test_failure: Make sure a ValueError is raised if you cannot stack the cubes"""
+        cube1 = Cube('red', 5)
+        cube2 = Cube('red', 5)
+        cube_list = [cube1, cube2]
+        with self.assertRaises(ValueError):
+            stack_cubes(cube_list)
 
     def test_widest_cube(self):
-        cube1 = cube('red', 5)
-        cube2 = cube('blue', 3)
-        cube3 = cube('red', 5)
-        cube4 = cube('green', 6)
-        cube5 = cube('purple', 7)
-        cube6 = cube('red', 2)
-        cubeList = [cube1, cube2, cube3, cube4, cube5, cube6]
-
-        stackedList = [cube5]
-
-        self.assertEqual(widest_cube(cubeList, stackedList), cube4)
+        """test_widest_cube: Test function to find the next widest cube
+        """
+        cube1 = Cube('red', 5)
+        cube2 = Cube('blue', 3)
+        cube3 = Cube('red', 5)
+        cube4 = Cube('green', 6)
+        cube5 = Cube('purple', 7)
+        cube6 = Cube('red', 2)
+        cube_list = [cube1, cube2, cube3, cube4, cube5, cube6]
+        stacked_list = [cube5]
+        self.assertEqual(widest_cube(cube_list, stacked_list), cube4)
 
 if __name__ == '__main__':
     unittest.main()

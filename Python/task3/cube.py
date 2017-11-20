@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-class cube:
-    def __init__(self, color, edgeLength):
+class Cube:
+    """cube: represents a cube but could easy be replaced by a dictionary, which would also be
+    much faster"""
+    def __init__(self, color, edge_length):
         self.color = color
-        self.edgeLength = edgeLength
-
+        self.edge_length = edge_length
