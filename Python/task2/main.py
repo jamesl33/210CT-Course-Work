@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
-from queen import queen
+from queen import Queen
 
-for i in range(8):
-    solver = queen(8)
-    print("Solution {0} - {1}".format(i + 1, solver.place_queen(i)))
+def main():
+    for i in range(8):
+        solver = Queen(8)
+        print("Solution {0} - {1}".format(i + 1, solver.place_queen(i)))
+
+main()
 
 ################# Pseudo Code #################
 
