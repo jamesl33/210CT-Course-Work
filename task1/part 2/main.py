@@ -6,6 +6,7 @@
 from lorry import Lorry
 from material import Material
 
+
 def main():
     """main: Driver code to show working implimentation of labsheet question
     """
@@ -17,5 +18,6 @@ def main():
     lorry1 = Lorry(10)
     lorry1.pickup_delivery(materials)
     print(lorry1)
+
 
 main()

@@ -6,6 +6,7 @@ import unittest
 from material import Material
 from lorry import Lorry
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
     def test_labsheet(self):
@@ -43,6 +44,7 @@ class UnitTest(unittest.TestCase):
 
         self.assertEqual(lorry1.cargo, known_correct_values)
         self.assertEqual(lorry1.load_composition, 2905)
+
 
 if __name__ == '__main__':
     unittest.main()

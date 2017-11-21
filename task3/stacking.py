@@ -2,6 +2,7 @@
 """stacking.py: Contains the functions to stack cubes according to rules
 """
 
+
 def calc_height(stacked_list):
     """calc_height
 
@@ -12,6 +13,7 @@ def calc_height(stacked_list):
     for cube in stacked_list:
         height += cube.edge_length
     return 'The maximum tower height is {0}'.format(height)
+
 
 def widest_cube(cube_list, stacked_list):
     """widest_cube
@@ -29,6 +31,7 @@ def widest_cube(cube_list, stacked_list):
             widest_edge = cube.edge_length
             current_widest_cube = cube
     return current_widest_cube
+
 
 def stack_cubes(cube_list):
     """stack_cubes

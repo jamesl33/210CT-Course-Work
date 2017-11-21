@@ -3,6 +3,7 @@
 'lorry' to figure out the best load composition
 """
 
+
 class Material:
     """material: Material class representing a possible material which can be
     loaded into a lorry """
@@ -27,5 +28,5 @@ class Material:
         return False
 
     def __str__(self):
-        return 'Name: {0}\nPPK: {1}\nQuantity: {2}\n'.format(self.name, self.price_per_kilo,\
+        return 'Name: {0}\nPPK: {1}\nQuantity: {2}\n'.format(self.name, self.price_per_kilo,
                                                              self.quantity)

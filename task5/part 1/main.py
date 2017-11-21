@@ -6,6 +6,7 @@ sum of integers in the diagonals
 import numpy as np
 from diagonals import get_all_diagonals, smallest_sum_in_array
 
+
 def main():
     """main"""
     array_size = 8
@@ -20,5 +21,6 @@ def main():
 
     print(array)
     print('Answer: {0}'.format(min(diagonals)))
+
 
 main()

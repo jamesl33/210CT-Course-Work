@@ -5,6 +5,7 @@
 import string
 import linked_list
 
+
 def main():
     """main: Opens up a text file and creates linked lists of words
     """
@@ -27,5 +28,6 @@ def main():
         for i in linked_lists:
             linked_lists[i].sort()
             print('Words of length {0}: {1}'.format(i, linked_lists[i]))
+
 
 main()

@@ -5,6 +5,7 @@ of numbers in a matrix of integers
 
 import numpy as np
 
+
 def check_if_set(array, pos_x, pos_y, visited=[]):
     """check_if_set: Recursive method to check if the position (x, y) is included in a set.
 
@@ -20,6 +21,7 @@ def check_if_set(array, pos_x, pos_y, visited=[]):
             visited.append((pos_i, pos_j))
             check_if_set(array, pos_i, pos_j, visited)
     return visited
+
 
 def check_neighbours(array, pos_x, pos_y):
     """check_neighbours:  Returns a list of direct neighbors with the same color as pos (x, y)
@@ -47,6 +49,7 @@ def check_neighbours(array, pos_x, pos_y):
 
     return neighbours
 
+
 def get_all_sets(array):
     """get_all_sets:  Method to get all sets of colors in the matrix.
     This includes empty sets which will are removed in "find_largest_set"
@@ -58,6 +61,7 @@ def get_all_sets(array):
         for j in range(array.shape[1]):
             all_sets.append(check_if_set(array, i, j, []))
     return all_sets
+
 
 def find_largest_set(array):
     """find_largest_set: Uses list from "get_all_sets" and finds the largest set of numbers
@@ -81,6 +85,7 @@ def find_largest_set(array):
             if lst not in sets:
                 sets.append(lst)
     return sets
+
 
 def create_array(size_x, size_y):
     """create_array: Helper function to create the array and print it. Needed due to the fact that

@@ -3,6 +3,7 @@
 stacking.py to stack cubes according to a set of rules
 """
 
+
 class Cube:
     """cube: represents a cube but could easy be replaced by a dictionary, which would also be
     much faster"""

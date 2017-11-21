@@ -3,6 +3,7 @@
 to calculate the most expensive load
 """
 
+
 class Lorry:
     """Lorry: Lorry class representing a lorry which is used to calculate the
     most expensive load

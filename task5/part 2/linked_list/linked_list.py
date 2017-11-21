@@ -2,6 +2,7 @@
 """linked_list.py:
 """
 
+
 class LinkedList:
     """LinkedList: Linked list class allowing the creation an manipulation of linked lists
     """
@@ -87,7 +88,7 @@ class LinkedList:
         while not is_sorted:
             is_sorted = True
             while current_node:
-                if current_node.next_node != None and \
+                if current_node.next_node is not None and \
                         current_node.data > current_node.next_node.data:
                     self._swap(current_node, current_node.next_node)
                     is_sorted = False

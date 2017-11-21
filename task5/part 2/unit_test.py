@@ -5,6 +5,7 @@
 import unittest
 import linked_list
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
     def test_append(self):
@@ -53,6 +54,7 @@ class UnitTest(unittest.TestCase):
         while current_node:
             self.assertTrue(current_node.data == node2.data)
             current_node = current_node.next_node
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,6 +5,7 @@
 from graph import Graph
 from node import Node
 
+
 def main():
     """main: Example to show testing if a graph is connected or not
     """
@@ -18,5 +19,6 @@ def main():
         print("The graph is connected")
     else:
         print("The graph is not connected")
+
 
 main()

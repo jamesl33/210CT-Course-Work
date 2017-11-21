@@ -7,6 +7,7 @@ import unittest
 from node import Node
 from graph import Graph
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
 
@@ -50,6 +51,7 @@ class UnitTest(unittest.TestCase):
         node_3 = Node(3, [2, 1])
         graph = Graph([node_1, node_2, node_3])
         self.assertTrue(graph.is_connected())
+
 
 if __name__ == '__main__':
     unittest.main()

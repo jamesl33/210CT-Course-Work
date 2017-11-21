@@ -2,6 +2,7 @@
 """node.py: Contains node class which will allow the creation of undirected nodes
 """
 
+
 class Node:
     """Node: Node class representing nodes on a graph
     """

@@ -5,6 +5,7 @@
 import unittest
 from queen import Queen
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest: Unit testing for the 8 queens problem solver
     """
@@ -34,6 +35,7 @@ class UnitTest(unittest.TestCase):
         self.assertFalse(solver.is_safe(1, 1))
         self.assertTrue(solver.is_safe(2, 1))
         self.assertTrue(solver.is_safe(1, 2))
+
 
 if __name__ == '__main__':
     unittest.main()

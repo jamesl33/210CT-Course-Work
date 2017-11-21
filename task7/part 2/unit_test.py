@@ -6,6 +6,7 @@ import unittest
 from weighted_graph import WeightedGraph
 from weighted_node import WeightedNode
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
     def test_add_node(self):
@@ -94,6 +95,7 @@ class UnitTest(unittest.TestCase):
         node_7 = WeightedNode(10, [9], {(10, 9): 4})
         graph = WeightedGraph([node_0, node_1, node_2, node_3, node_4, node_5, node_6, node_7])
         self.assertEqual(graph.shortest_path(5, 9), 'Path: [5, 9]\nDistance traveled: 1')
+
 
 if __name__ == '__main__':
     unittest.main()

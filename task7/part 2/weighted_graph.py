@@ -6,6 +6,7 @@ import math
 from graph import Graph
 from weighted_node import WeightedNode
 
+
 class WeightedGraph(Graph):
     """weighted_graph: Directed acyclic graph class which inherits from Graph class
     """
@@ -170,7 +171,7 @@ class WeightedGraph(Graph):
         """
         short_path = []
         node = end
-        while path[node] != None:
+        while path[node] is not None:
             short_path.insert(0, node)
             node = path[node]
         short_path.insert(0, node)

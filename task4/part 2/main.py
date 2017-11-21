@@ -31,4 +31,5 @@ def main():
     else:
         print('The {0} smallest element is {1}'.format(ordinal(element), sorted_array[element - 1]))
 
+
 main()

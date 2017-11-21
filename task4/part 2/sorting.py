@@ -2,6 +2,7 @@
 """sorting.py: Simple implimentation of the quick sort algorithm
 """
 
+
 def quick_sort(array):
     """quick_sort: Use the quick sort algorithm to sort 'array'
 

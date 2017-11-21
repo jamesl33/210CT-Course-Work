@@ -2,6 +2,7 @@
 """queen.py: Holds the Queen class which is a solver for the 8 queens problem
 """
 
+
 class Queen():
     """Queen: Solver for the eight queen problem
     """

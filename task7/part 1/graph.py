@@ -4,6 +4,7 @@
 
 from node import Node
 
+
 class Graph:
     """graph: Undirected unweighted graph class
     """

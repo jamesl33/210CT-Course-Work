@@ -7,6 +7,7 @@ import unittest
 from cube import Cube
 from stacking import calc_height, stack_cubes, widest_cube
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
     def test_calc_height(self):
@@ -36,6 +37,7 @@ class UnitTest(unittest.TestCase):
         cube_list = [cube1, cube2, cube3, cube4, cube5, cube6]
         stacked_list = [cube5]
         self.assertEqual(widest_cube(cube_list, stacked_list), cube4)
+
 
 if __name__ == '__main__':
     unittest.main()

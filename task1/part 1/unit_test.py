@@ -5,6 +5,7 @@
 import unittest
 from factorials import test_divides
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
     def test_correct(self):
@@ -20,6 +21,7 @@ class UnitTest(unittest.TestCase):
         known_wrong_values = [(6, 27), (20, 1000000)]
         for num_a, num_b in known_wrong_values:
             self.assertFalse(test_divides(num_a, num_b)[1])
+
 
 if __name__ == '__main__':
     unittest.main()

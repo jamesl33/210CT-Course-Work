@@ -5,6 +5,7 @@
 from weighted_graph import WeightedGraph
 from weighted_node import WeightedNode
 
+
 def main():
     """main: Example case for finding longest and shortest path
     """
@@ -18,5 +19,6 @@ def main():
 
     print('The longest path is {0}'.format(graph.longest_path(0, 3)))
     print('The shortest path is {0}'.format(graph.shortest_path(0, 3)))
+
 
 main()

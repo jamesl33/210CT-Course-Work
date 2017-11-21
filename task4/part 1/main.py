@@ -4,6 +4,7 @@
 
 from set_finding import find_largest_set, create_array
 
+
 def main():
     """main: Main driver code to ask user for input then use quick_sort
     """
@@ -13,7 +14,8 @@ def main():
     for i in range(len(number_set)):
         if not number_set[i]:
             print("There are no sets of numbers in this matrix")
-        print("{0}. Number/Color = {1}\n   Set = {2}\n".format(i + 1, array[number_set[i][0][0]]\
+        print("{0}. Number/Color = {1}\n   Set = {2}\n".format(i + 1, array[number_set[i][0][0]]
                                                                [number_set[i][0][1]], number_set[i]))
+
 
 main()

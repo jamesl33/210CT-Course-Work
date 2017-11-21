@@ -2,6 +2,7 @@
 """diagonals.py: File contains all the functions to get the diagonals from a matrix
 """
 
+
 def get_diagonal(array, offset=0):
     """get_diagonal: Method to get the main diagonal from matrix
 
@@ -22,6 +23,7 @@ def get_diagonal(array, offset=0):
             pass
     return lst
 
+
 def get_all_diagonals(array, size):
     """get_all_diagonals: Gets all the diagonals in the matrix
 
@@ -34,6 +36,7 @@ def get_all_diagonals(array, size):
         if len(diagonal) >= size:
             diagonals.append(diagonal)
     return diagonals
+
 
 def smallest_sum_in_array(array, size):
     """smallest_sum_in_array: gets the smallest sum of m elements in the array

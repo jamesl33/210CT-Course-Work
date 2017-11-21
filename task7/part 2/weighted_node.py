@@ -4,6 +4,7 @@
 
 from node import Node
 
+
 class WeightedNode(Node):
     """WeightedNode class allowing for nodes to have a weight(distance to other nodes)
     """

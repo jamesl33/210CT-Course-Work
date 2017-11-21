@@ -7,6 +7,7 @@ import unittest
 import numpy as np
 from set_finding import check_neighbours, check_if_set, find_largest_set
 
+
 class UnitTest(unittest.TestCase):
     """UnitTest"""
     def test_check_neighbours(self):
@@ -70,7 +71,7 @@ class UnitTest(unittest.TestCase):
         array[1][2] = 1
         array[1][0] = 1
 
-        self.assertEqual(find_largest_set(array), [[(0, 2), (0, 3), (1, 3), (2, 0), (2, 2),\
+        self.assertEqual(find_largest_set(array), [[(0, 2), (0, 3), (1, 3), (2, 0), (2, 2),
                                                     (2, 3), (3, 0), (3, 1), (3, 2), (3, 3)]])
 
         array = np.zeros((4, 4), int)
@@ -79,10 +80,11 @@ class UnitTest(unittest.TestCase):
             for j in range(array.shape[1]):
                 array[i][j] = 1
 
-        self.assertEqual(find_largest_set(array), [[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), \
-                                                    (1, 1), (1, 2), (1, 3), (2, 0), (2, 1), \
-                                                    (2, 2), (2, 3), (3, 0), (3, 1), (3, 2), \
+        self.assertEqual(find_largest_set(array), [[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0),
+                                                    (1, 1), (1, 2), (1, 3), (2, 0), (2, 1),
+                                                    (2, 2), (2, 3), (3, 0), (3, 1), (3, 2),
                                                     (3, 3)]])
+
 
 if __name__ == '__main__':
     unittest.main()
