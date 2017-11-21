@@ -1,0 +1,11 @@
+FACTORIAL(n)
+    IF n = 0
+        RETURN 1
+    ELSE
+        RETURN n * FACTORIAL(n - 1)
+
+TEST-IF-DEVIDES(a, b)
+    IF a! MOD b = 0
+        RETURN true
+    ELSE
+        RETURN false

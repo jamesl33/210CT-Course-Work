@@ -1,0 +1,9 @@
+solve(pos=0)
+  boardState = []
+  IF LEN(boardState)
+      FOR i = pos; pos < 8
+          IF safe_placement(LEN(boardState))
+              boardState APPEND i
+              RETURN solve()
+      lastQueenRow = boardState.pop()
+      return solve(lastQueenRow + 1)
