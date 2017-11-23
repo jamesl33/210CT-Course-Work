@@ -103,23 +103,24 @@ class WeightedGraph(Graph):
         :param end: Integer representing the end node
         :return Tuple: Tuple (shortest distance, sorted path)
         """
-        assert start in self.vertices and end in self.vertices
-        distances = dict.fromkeys(list(self.vertices), math.inf)
-        predecessors = dict.fromkeys(list(self.vertices), None)
-        distances[start] = 0
+        for i in range(len(self.vertices)):
+            assert start in self.vertices and end in self.vertices
+            distances = dict.fromkeys(list(self.vertices), math.inf)
+            predecessors = dict.fromkeys(list(self.vertices), None)
+            distances[start] = 0
 
-        for vertex in self.vertices and self.edges:
-            for neighbour in self.edges[vertex]:
-                if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
-                    distances[neighbour] = distances[vertex] + self.weights[(vertex, neighbour)]
-                    predecessors[neighbour] = vertex
-
-        for vertex in self.vertices and self.edges:
-            for neighbour in self.edges:
-                if (vertex, neighbour) in self.weights:
+            for vertex in self.vertices and self.edges:
+                for neighbour in self.edges[vertex]:
                     if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
-                        raise TypeError('This graph contains a negative cycle')
-        return distances[end], self._short_path(predecessors, end)
+                        distances[neighbour] = distances[vertex] + self.weights[(vertex, neighbour)]
+                        predecessors[neighbour] = vertex
+
+            for vertex in self.vertices and self.edges:
+                for neighbour in self.edges:
+                    if (vertex, neighbour) in self.weights:
+                        if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
+                            raise TypeError('This graph contains a negative cycle')
+            return distances[end], self._short_path(predecessors, end)
 
     def _dijkstra(self, start, end):
         """_dijkstra: Use dijkstra algorithm to get the shortest path

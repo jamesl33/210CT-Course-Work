@@ -72,6 +72,17 @@ class UnitTest(unittest.TestCase):
         graph = WeightedGraph([node_0, node_1, node_2, node_3, node_4, node_5])
         self.assertEqual(graph.shortest_path(0, 3), 'Path: [0, 1, 2, 3]\nDistance traveled: 6')
 
+        node_0 = WeightedNode(5, [11, 9], {(5, 11): 4, (5, 9): 1})
+        node_1 = WeightedNode(11, [2, 9, 10], {(11, 2): 6, (11, 9): 2, (11, 10): 9})
+        node_2 = WeightedNode(2, [5], {(2, 5): 2})
+        node_3 = WeightedNode(7, [8, 11], {(7, 8): 2, (7, 11): 5})
+        node_4 = WeightedNode(8, [9], {(8, 9): 5})
+        node_5 = WeightedNode(9, [2], {(9, 2): 4})
+        node_6 = WeightedNode(3, [8, 10], {(3, 8): 2, (3, 10): 7})
+        node_7 = WeightedNode(10, [9], {(10, 9): 4})
+        graph = WeightedGraph([node_0, node_1, node_2, node_3, node_4, node_5, node_6, node_7])
+        self.assertEqual(graph.shortest_path(5, 9), 'Path: [5, 9]\nDistance traveled: 1')
+
     def test_longest_path(self):
         """test_longest_path: Test that the longest path is correctly generated using
         the '_belmon_ford' function
@@ -84,18 +95,6 @@ class UnitTest(unittest.TestCase):
         node_5 = WeightedNode(5, [3], {(5, 3): 12})
         graph = WeightedGraph([node_0, node_1, node_2, node_3, node_4, node_5])
         self.assertEqual(graph.longest_path(0, 3), 'Path: [0, 4, 5, 3]\nDistance traveled: 37')
-
-        node_0 = WeightedNode(5, [11, 9], {(5, 11): 4, (5, 9): 1})
-        node_1 = WeightedNode(11, [2, 9, 10], {(11, 2): 6, (11, 9): 2, (11, 10): 9})
-        node_2 = WeightedNode(2, [5], {(2, 5): 2})
-        node_3 = WeightedNode(7, [8, 11], {(7, 8): 2, (7, 11): 5})
-        node_4 = WeightedNode(8, [9], {(8, 9): 5})
-        node_5 = WeightedNode(9, [2], {(9, 2): 4})
-        node_6 = WeightedNode(3, [8, 10], {(3, 8): 2, (3, 10): 7})
-        node_7 = WeightedNode(10, [9], {(10, 9): 4})
-        graph = WeightedGraph([node_0, node_1, node_2, node_3, node_4, node_5, node_6, node_7])
-        self.assertEqual(graph.shortest_path(5, 9), 'Path: [5, 9]\nDistance traveled: 1')
-
 
 if __name__ == '__main__':
     unittest.main()
