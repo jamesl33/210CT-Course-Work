@@ -96,5 +96,6 @@ class UnitTest(unittest.TestCase):
         graph = WeightedGraph([node_0, node_1, node_2, node_3, node_4, node_5])
         self.assertEqual(graph.longest_path(0, 3), 'Path: [0, 4, 5, 3]\nDistance traveled: 37')
 
+
 if __name__ == '__main__':
     unittest.main()

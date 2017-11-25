@@ -118,7 +118,8 @@ class WeightedGraph(Graph):
             for vertex in self.vertices and self.edges:
                 for neighbour in self.edges:
                     if (vertex, neighbour) in self.weights:
-                        if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
+                        if distances[neighbour] > distances[vertex] + \
+                                self.weights[(vertex, neighbour)]:
                             raise TypeError('This graph contains a negative cycle')
             return distances[end], self._short_path(predecessors, end)
 
@@ -143,7 +144,6 @@ class WeightedGraph(Graph):
                         distances[neighbour] = test_path
                         path[neighbour] = vertex
             visited.add(vertex)
-
         return distances[end], self._short_path(path, end)
 
     def _add_edge(self, vertex_a, vertex_b):
