@@ -9,6 +9,7 @@ def quick_sort(array):
     :param array: List of integer, should work with strings
     :output array: Sorted version of 'array'
     """
+    assert isinstance(array, list)
     less_list, greater_list, equal_list = [], [], []
     if len(array) > 1:
         pivot_point = array[-1]

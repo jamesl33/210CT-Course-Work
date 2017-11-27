@@ -3,7 +3,8 @@
 """
 
 import unittest
-import linked_list
+from linked_list import LinkedList
+from node import Node
 
 
 class UnitTest(unittest.TestCase):
@@ -11,16 +12,16 @@ class UnitTest(unittest.TestCase):
     def test_append(self):
         """test_append: Test appending to a linked list
         """
-        node1 = linked_list.Node('test')
-        lst = linked_list.LinkedList()
+        node1 = Node('test')
+        lst = LinkedList()
         lst.append(node1)
         self.assertTrue(len(lst) == 1)
 
     def test_pop(self):
         """test_pop: Test removing a node from the end of the linked list and returning it
         """
-        node1 = linked_list.Node('test')
-        lst = linked_list.LinkedList()
+        node1 = Node('test')
+        lst = LinkedList()
         lst.append(node1)
         lst.pop()
         self.assertTrue(len(lst) == 0)
@@ -28,9 +29,9 @@ class UnitTest(unittest.TestCase):
     def test_swap(self):
         """test_swap: test swapping two nodes values
         """
-        node1 = linked_list.Node('test')
-        node2 = linked_list.Node('anotherTest')
-        lst = linked_list.LinkedList()
+        node1 = Node('test')
+        node2 = Node('anotherTest')
+        lst = LinkedList()
         lst.append(node1)
         lst.append(node2)
         lst._swap(node1, node2)
@@ -43,9 +44,9 @@ class UnitTest(unittest.TestCase):
     def test_remove(self):
         """test_remove: Test removing a node by is reference
         """
-        node1 = linked_list.Node('test')
-        node2 = linked_list.Node('anotherTest')
-        lst = linked_list.LinkedList()
+        node1 = Node('test')
+        node2 = Node('anotherTest')
+        lst = LinkedList()
         lst.append(node1)
         lst.append(node2)
         lst.remove(node1)

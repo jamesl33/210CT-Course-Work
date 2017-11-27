@@ -2,6 +2,8 @@
 """linked_list.py:
 """
 
+from node import Node
+
 
 class LinkedList:
     """LinkedList: Linked list class allowing the creation an manipulation of linked lists
@@ -16,6 +18,7 @@ class LinkedList:
 
         :param new_node: Node object
         """
+        assert isinstance(new_node, Node)
         if self.first_node is None and self.last_node is None:
             self.first_node = new_node
             self.last_node = new_node
@@ -40,6 +43,7 @@ class LinkedList:
 
         :param word: string
         """
+        assert isinstance(word, str)
         current_node = self.first_node
         while current_node:
             if current_node.data == word:
@@ -52,6 +56,7 @@ class LinkedList:
 
         :param new_node: Node which you want to append to the list
         """
+        assert isinstance(new_node, Node)
         if self.first_node is None and self.last_node is None:
             self.first_node = new_node
             self.last_node = new_node
@@ -67,6 +72,7 @@ class LinkedList:
 
         :param node: Node to be removed from the linked list
         """
+        assert isinstance(node, Node)
         if node == self.first_node:
             self.first_node = node.next_node
         elif node == self.last_node:
@@ -102,6 +108,8 @@ class LinkedList:
         :param node_a:
         :param node_b:
         """
+        assert isinstance(node_a, Node)
+        assert isinstance(node_b, Node)
         tmp_data = node_b.data
         node_b.data = node_a.data
         node_a.data = tmp_data

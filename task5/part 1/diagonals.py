@@ -3,6 +3,9 @@
 """
 
 
+import numpy as np
+
+
 def get_diagonal(array, offset=0):
     """get_diagonal: Method to get the main diagonal from matrix
 
@@ -10,6 +13,7 @@ def get_diagonal(array, offset=0):
     :param offset: Integer which allows you to offset which diagonal you want to get e.g getting
     the diagonal above the main one
     """
+    assert isinstance(array, (np.ndarray, list))
     assert offset <= len(array)
     assert offset >= -len(array)
     lst = []
@@ -30,6 +34,8 @@ def get_all_diagonals(array, size):
     :param array: Matrix of intergers
     :param size: Integer representing the size wanted
     """
+    assert isinstance(array, (np.ndarray, list))
+    assert isinstance(size, int)
     diagonals = []
     for i in range(-(len(array) - 1), (len(array))):
         diagonal = get_diagonal(array, i)
@@ -44,6 +50,8 @@ def smallest_sum_in_array(array, size):
     :param array: List of itegers
     :param size: int representing the amount of elements
     """
+    assert isinstance(array, list)
+    assert isinstance(size, int)
     array.sort()
     array = array[:size]
     return sum(array)

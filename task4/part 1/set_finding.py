@@ -15,6 +15,10 @@ def check_if_set(array, pos_x, pos_y, visited=[]):
     :param visited: List containing visited coords
     :returns list: List of visited coords
     """
+    assert isinstance(array, np.ndarray)
+    assert isinstance(pos_x, int)
+    assert isinstance(pos_y, int)
+    assert isinstance(visited, list)
     neighbours = check_neighbours(array, pos_x, pos_y)
     for pos_i, pos_j in neighbours:
         if (pos_i, pos_j) not in visited:
@@ -30,6 +34,9 @@ def check_neighbours(array, pos_x, pos_y):
     :param pos_x: Int representing x coord
     :param pos_y: Int representing y coord
     """
+    assert isinstance(array, np.ndarray)
+    assert isinstance(pos_x, int)
+    assert isinstance(pos_y, int)
     neighbours = []
     if not (pos_x - 1) < 0:
         if array[pos_x - 1][pos_y] == array[pos_x][pos_y]:
@@ -56,6 +63,7 @@ def get_all_sets(array):
 
     :param array: Matrix which we are searching for sets of numbers
     """
+    assert isinstance(array, (np.ndarray, list))
     all_sets = []
     for i in range(array.shape[0]):
         for j in range(array.shape[1]):
@@ -71,6 +79,7 @@ def find_largest_set(array):
     :param array: Matrix which we are finding the largest set in
     :returns  list: A list of lists containing tuples of x y coordinates
     """
+    assert isinstance(array, (np.ndarray, list))
     sets = []
     current_largest_set = 0
     for lst in get_all_sets(array):
@@ -95,6 +104,8 @@ def create_array(size_x, size_y):
     :param n: int width of array to be created
     :param m: int height of array to be created
     """
+    assert isinstance(size_x, int)
+    assert isinstance(size_y, int)
     array = np.random.random_integers(1, 9, size=(size_x, size_y))
     print("{0}\n".format(array))
     return array

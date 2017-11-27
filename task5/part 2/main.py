@@ -3,7 +3,8 @@
 """
 
 import string
-import linked_list
+from linked_list import LinkedList
+from node import Node
 
 
 def main():
@@ -16,10 +17,10 @@ def main():
             word = word.translate(str.maketrans('', '', string.punctuation))
             word = word.lower()
 
-            new_node = linked_list.Node(word)
+            new_node = Node(word)
 
             if len(word) not in linked_lists:
-                linked_lists[len(word)] = linked_list.LinkedList()
+                linked_lists[len(word)] = LinkedList()
                 linked_lists[len(word)].append(new_node)
             else:
                 if not linked_lists[len(word)].is_in(word):

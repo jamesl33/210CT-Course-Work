@@ -74,6 +74,9 @@ class WeightedGraph(Graph):
         :param start: Integer representing the start node
         :param end: Integer representing the end node
         """
+        assert isinstance(start, int)
+        assert isinstance(end, int)
+
         def _invert():
             for weight in self.weights:
                 self.weights[weight] = self.weights[weight] * -1
@@ -90,6 +93,8 @@ class WeightedGraph(Graph):
         :param start: Integer representing the start node
         :param end: Integer representing the end node
         """
+        assert isinstance(start, int)
+        assert isinstance(end, int)
         distance, path = self._dijkstra(start, end)
         if math.isinf(distance):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
