@@ -100,6 +100,39 @@ class WeightedGraph(Graph):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
         return 'Path: {0}\nDistance traveled: {1}'.format(path, distance)
 
+    def get_shortest_hamiltonian_cycle(self):
+        """get_shortest_hamiltonian_cycle: Find the shortest hamiltonian cycle in a graph
+
+        :return list: list containing the shortest hamiltonian path if there is multiple of
+        the same length they are all returned
+        """
+        cycles = self.get_hamiltonian_cycles()
+
+        def _path_cost(path):
+            cost = 0
+            for index, vertex in enumerate(path):
+                try:
+                    cost += self.weights[(vertex, path[index + 1])]
+                except IndexError:
+                    pass
+            return path, cost
+
+        costs = []
+        for cycle in cycles:
+            costs.append(_path_cost(cycle))
+
+        minimum = math.inf
+        minimum_cycle = []
+        for cycle in costs:
+            if cycle[1] < minimum:
+                minimum = cycle[1]
+                minimum_cycle.append(cycle)
+
+            elif cycle[1] == minimum:
+                minimum_cycle.append(cycle)
+
+        return minimum_cycle
+
     def _belmon_ford(self, start, end):
         """_belmon_ford: Use Belmon ford to calculate the longest path. This is needed because
         Dijkstra's weights must be non-negative
@@ -110,8 +143,8 @@ class WeightedGraph(Graph):
         """
         for i in range(len(self.vertices)):
             assert start in self.vertices and end in self.vertices
-            distances = dict.fromkeys(list(self.vertices), math.inf)
-            predecessors = dict.fromkeys(list(self.vertices), None)
+            distances = dict.fromkeys(self.vertices, math.inf)
+            predecessors = dict.fromkeys(self.vertices, None)
             distances[start] = 0
 
             for vertex in self.vertices and self.edges:

@@ -2,6 +2,7 @@
 """graph.py: Base graph class
 """
 
+import copy
 from node import Node
 
 
@@ -72,6 +73,51 @@ class Graph:
         assert isinstance(target_node, Node)
         self._remove_vertex(target_node.value)
         self._remove_edge(target_node.value)
+
+    def find_all_paths(self):
+        """find_all_paths: Finds all valid paths through the graph using DFS
+
+        :return list: all paths is graph
+        """
+        all_paths = []
+
+        def _find_path(start, end, visited, path):
+            visited[start] = True
+            path.append(start)
+            if start == end:
+                all_paths.append(copy.copy(path))
+            else:
+                for vertex in self.edges[start]:
+                    if visited[vertex] is False:
+                        _find_path(vertex, end, visited, path)
+            path.pop()
+            visited[start] = False
+
+        for start in self.vertices:
+            for end in self.vertices:
+                _find_path(start, end, dict.fromkeys(self.vertices, False), [])
+        return all_paths
+
+    def get_hamiltonian_cycles(self):
+        """get_hamiltonian_cycles: Uses output of 'find_all_paths' to construct a list of
+        hamiltonian cycles
+
+        :return list: List of hamiltonian cycles
+        """
+        cycles = []
+
+        def _find_cycles():
+            all_paths = self.find_all_paths()
+            for path in all_paths:
+                if set(path) == self.vertices:
+                    start = path[0]
+                    end = path[-1]
+                    if start in self.edges[end]:
+                        path.append(path[0])
+                        cycles.append(path)
+
+        _find_cycles()
+        return cycles
 
     def _remove_vertex(self, value):
         self.vertices.remove(value)
