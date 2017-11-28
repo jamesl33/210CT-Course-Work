@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-class binary_tree:
+class BinaryTree:
     def __init__(self):
         self.root = None
         self.type = None

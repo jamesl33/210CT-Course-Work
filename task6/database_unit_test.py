@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 
-import unittest, datetime, database, tree
+import unittest
+import datetime
+from database import Database
+from student import Student
+from address import Address
 
 class UnitTest(unittest.TestCase):
     def setUp(self):
-        self.student1 = database.student(1, "Ryan", datetime.date(1978, 1, 12), "104, Main Street", datetime.date(2017, 3, 9), "220CT", True)
-        self.student2 = database.student(2, "Devin", datetime.date(2000, 1, 12), "10, Station Road", datetime.date(2017, 3, 9), "121COM", False)
-        self.student3 = database.student(3, "Rob", datetime.date(2002, 4, 2), "1, Lunch Lane", datetime.date(2017, 3, 9), "290COM", True)
-        self.student4 = database.student(4, "Ellen", datetime.date(1997, 1, 12), "23, Lovelace Avenue", datetime.date(2017, 3, 9), "290COM", False)
-        self.student5 = database.student(5, "Taylor", datetime.date(1995, 5, 9), "3, Judas Lane", datetime.date(2017, 3, 9), "220CT", True)
+        self.student1 = Student(1, "Ryan", datetime.date(1978, 1, 12), "104, Main Street", datetime.date(2017, 3, 9), "220CT", True)
+        self.student2 = Student(2, "Devin", datetime.date(2000, 1, 12), "10, Station Road", datetime.date(2017, 3, 9), "121COM", False)
+        self.student3 = Student(3, "Rob", datetime.date(2002, 4, 2), "1, Lunch Lane", datetime.date(2017, 3, 9), "290COM", True)
+        self.student4 = Student(4, "Ellen", datetime.date(1997, 1, 12), "23, Lovelace Avenue", datetime.date(2017, 3, 9), "290COM", False)
+        self.student5 = Student(5, "Taylor", datetime.date(1995, 5, 9), "3, Judas Lane", datetime.date(2017, 3, 9), "220CT", True)
         self.students = [self.student3, self.student2, self.student4, self.student1, self.student5]
-        self.db = database.database(self.students)
+        self.db = Database(self.students)
 
     def test_finding_student_by_id(self):
         correct = [self.student3]
@@ -46,14 +50,13 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(lex, ['121COM: Devin', '290COM: Ellen', '290COM: Rob', '220CT: Ryan', '220CT: Taylor'])
 
     def test_remove_by_id(self):
-        ''' self contained due to the fact that the other unit tests modify the students '''
-        student1 = database.student(1, "Ryan", datetime.date(1978, 1, 12), database.address(104, 'Main Street'), datetime.date(2017, 2, 9), '220CT', True)
-        student2 = database.student(2, "Devin", datetime.date(2000, 1, 12), database.address(10, 'Station Road'), datetime.date(2013, 3, 9), '210CT', False)
-        student3 = database.student(3, "Rob", datetime.date(2002, 4, 2), database.address(1, 'Lunch Lane'), datetime.date(2017, 3, 4), '210CT', True)
-        student4 = database.student(4, "Ellen", datetime.date(1997, 1, 12), database.address(1, 'Lunch Lane'), datetime.date(2017, 3, 9), '290COM', False)
-        student5 = database.student(5, "Taylor", datetime.date(1995, 5, 9), database.address(3, 'Judas Lane'), datetime.date(2017, 4, 9), '220CT', True)
+        student1 = Student(1, "Ryan", datetime.date(1978, 1, 12), Address(104, 'Main Street'), datetime.date(2017, 2, 9), '220CT', True)
+        student2 = Student(2, "Devin", datetime.date(2000, 1, 12), Address(10, 'Station Road'), datetime.date(2013, 3, 9), '210CT', False)
+        student3 = Student(3, "Rob", datetime.date(2002, 4, 2), Address(1, 'Lunch Lane'), datetime.date(2017, 3, 4), '210CT', True)
+        student4 = Student(4, "Ellen", datetime.date(1997, 1, 12), Address(1, 'Lunch Lane'), datetime.date(2017, 3, 9), '290COM', False)
+        student5 = Student(5, "Taylor", datetime.date(1995, 5, 9), Address(3, 'Judas Lane'), datetime.date(2017, 4, 9), '220CT', True)
         students = [student5, student3, student4, student2, student1]
-        db = database.database(students)
+        db = Database(students)
         db.remove_by_id(1)
         self.assertEqual(db.data['unique_id'].order(True), ['2', '3', '4', '5'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen', 'Rob', 'Taylor'])
@@ -64,18 +67,16 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False', 'True', 'True'])
 
     def test_remove_by_postgraduate(self):
-        ''' self contained due to the fact that the other unit tests modify the students '''
-        ''' There is a nasty logic error in the removing root node when the root has two children please FIX ME I cant for the life of me fix it '''
-        student1 = database.student(1, "Ryan", datetime.date(1978, 1, 12), database.address(104, 'Main Street'), datetime.date(2017, 2, 9), '220CT', True)
-        student2 = database.student(2, "Devin", datetime.date(2000, 1, 12), database.address(10, 'Station Road'), datetime.date(2013, 3, 9), '210CT', False)
-        student3 = database.student(3, "Rob", datetime.date(2002, 4, 2), database.address(1, 'Lunch Lane'), datetime.date(2017, 3, 4), '210CT', True)
-        student4 = database.student(4, "Ellen", datetime.date(1997, 1, 12), database.address(1, 'Lunch Lane'), datetime.date(2017, 3, 9), '290COM', False)
-        student5 = database.student(5, "Taylor", datetime.date(1995, 5, 9), database.address(3, 'Judas Lane'), datetime.date(2017, 4, 9), '220CT', True)
+        student1 = Student(1, "Ryan", datetime.date(1978, 1, 12), Address(104, 'Main Street'), datetime.date(2017, 2, 9), '220CT', True)
+        student2 = Student(2, "Devin", datetime.date(2000, 1, 12), Address(10, 'Station Road'), datetime.date(2013, 3, 9), '210CT', False)
+        student3 = Student(3, "Rob", datetime.date(2002, 4, 2), Address(1, 'Lunch Lane'), datetime.date(2017, 3, 4), '210CT', True)
+        student4 = Student(4, "Ellen", datetime.date(1997, 1, 12), Address(1, 'Lunch Lane'), datetime.date(2017, 3, 9), '290COM', False)
+        student5 = Student(5, "Taylor", datetime.date(1995, 5, 9), Address(3, 'Judas Lane'), datetime.date(2017, 4, 9), '220CT', True)
         students = [student5, student4, student3, student2, student1]
-        db = database.database(students)
+        db = Database(students)
 
-        postGrads = db.find(True, 'postgraduate')
-        db.remove_by_id(postGrads[0].data['unique_id'])
+        post_grads = db.find(True, 'postgraduate')
+        db.remove_by_id(post_grads[0].data['unique_id'])
 
         self.assertEqual(db.data['unique_id'].order(True), ['1', '2', '3', '4'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen', 'Rob', 'Ryan'])
@@ -85,7 +86,7 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(db.data['class_id'].order(True), ['210CT', '210CT', '220CT', '290COM'])
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False', 'True', 'True'])
 
-        db.remove_by_id(postGrads[1].data['unique_id'])
+        db.remove_by_id(post_grads[1].data['unique_id'])
 
         self.assertEqual(db.data['unique_id'].order(True), ['1', '2', '4'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen', 'Ryan'])
@@ -95,7 +96,7 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(db.data['class_id'].order(True), ['210CT', '220CT', '290COM'])
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False', 'True'])
 
-        db.remove_by_id(postGrads[2].data['unique_id'])
+        db.remove_by_id(post_grads[2].data['unique_id'])
         self.assertEqual(db.data['unique_id'].order(True), ['2', '4'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen'])
         self.assertEqual(db.data['date_of_birth'].order(True), ['1997-01-12', '2000-01-12'])

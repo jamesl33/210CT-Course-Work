@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
 import unittest
-from binary_tree import binary_tree
-from node import node
+from binary_tree import BinaryTree
+from node import Node
 
 class UnitTest(unittest.TestCase):
     def test_insert_root(self):
-        tree = binary_tree()
-        node1 = node((1, None))
+        tree = BinaryTree()
+        node1 = Node((1, None))
         tree.insert(node1)
         self.assertEqual(tree.root, node1)
         self.assertEqual(node1.parent, None)
@@ -15,9 +15,9 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(node1.right_node, None)
 
     def test_insert_root_with_one_child(self):
-        tree = binary_tree()
-        node1 = node((1, None))
-        node2 = node((2, None))
+        tree = BinaryTree()
+        node1 = Node((1, None))
+        node2 = Node((2, None))
         tree.insert(node1)
         tree.insert(node2)
         self.assertEqual(tree.root, node1)
@@ -29,10 +29,10 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(node2.right_node, None)
 
     def test_insert_three(self):
-        tree = binary_tree()
-        node1 = node((3, None))
-        node2 = node((2, None))
-        node3 = node((4, None))
+        tree = BinaryTree()
+        node1 = Node((3, None))
+        node2 = Node((2, None))
+        node3 = Node((4, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -48,11 +48,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(node3.right_node, None)
 
     def test_min_right(self):
-        tree = binary_tree()
-        node1 = node((1, None))
-        node2 = node((5, None))
-        node3 = node((7, None))
-        node4 = node((4, None))
+        tree = BinaryTree()
+        node1 = Node((1, None))
+        node2 = Node((5, None))
+        node3 = Node((7, None))
+        node4 = Node((4, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -60,11 +60,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.min_right(), node4)
 
     def test_count_children(self):
-        tree = binary_tree()
-        node1 = node((1, None))
-        node2 = node((5, None))
-        node3 = node((7, None))
-        node4 = node((4, None))
+        tree = BinaryTree()
+        node1 = Node((1, None))
+        node2 = Node((5, None))
+        node3 = Node((7, None))
+        node4 = Node((4, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -73,9 +73,9 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.count_children(node1), 1)
 
     def test_remove_leaf(self):
-        tree = binary_tree()
-        node1 = node((2, None))
-        node2 = node((1, None))
+        tree = BinaryTree()
+        node1 = Node((2, None))
+        node2 = Node((1, None))
         tree.insert(node1)
         tree.insert(node2)
         self.assertEqual(tree.order(), [node2, node1])
@@ -89,10 +89,10 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node1])
 
     def test_remove_1_right_child(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((3, None))
-        node3 = node((4, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((3, None))
+        node3 = Node((4, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -116,10 +116,10 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node3, node1])
 
     def test_remove_1_left_child(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((3, None))
-        node3 = node((2, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((3, None))
+        node3 = Node((2, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -148,11 +148,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node3, node1])
 
     def test_remove_2_children(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((7, None))
-        node3 = node((8, None))
-        node4 = node((6, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((7, None))
+        node3 = Node((8, None))
+        node4 = Node((6, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -186,11 +186,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node1, node4, node3])
 
     def test_remove_2_children(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((3, None))
-        node3 = node((2, None))
-        node4 = node((4, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((3, None))
+        node3 = Node((2, None))
+        node4 = Node((4, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -224,15 +224,15 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node3, node4, node1])
 
     def test_remove_2_children(self):
-        tree = binary_tree()
-        node1 = node((10, None))
-        node2 = node((20, None))
-        node3 = node((15, None))
-        node4 = node((25, None))
-        node5 = node((5, None))
-        node6 = node((7, None))
-        node7 = node((3, None))
-        node8 = node((2, None))
+        tree = BinaryTree()
+        node1 = Node((10, None))
+        node2 = Node((20, None))
+        node3 = Node((15, None))
+        node4 = Node((25, None))
+        node5 = Node((5, None))
+        node6 = Node((7, None))
+        node7 = Node((3, None))
+        node8 = Node((2, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -296,11 +296,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node8, node7, node6, node1, node3, node2, node4])
 
     def test_remove_root_left_child(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((3, None))
-        node3 = node((2, None))
-        node4 = node((4, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((3, None))
+        node3 = Node((2, None))
+        node4 = Node((4, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -336,11 +336,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node3, node2, node4])
 
     def test_remove_root_right_child(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((10, None))
-        node3 = node((8, None))
-        node4 = node((12, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((10, None))
+        node3 = Node((8, None))
+        node4 = Node((12, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -376,11 +376,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node3, node2, node4])
 
     def test_remove_root_2_children(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((10, None))
-        node3 = node((4, None))
-        node4 = node((12, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((10, None))
+        node3 = Node((4, None))
+        node4 = Node((12, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -416,11 +416,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node3, node2, node4])
 
     def test_equal_values(self):
-        tree = binary_tree()
-        node1 = node((1, None))
-        node2 = node((1, None))
-        node3 = node((1, None))
-        node4 = node((1, None))
+        tree = BinaryTree()
+        node1 = Node((1, None))
+        node2 = Node((1, None))
+        node3 = Node((1, None))
+        node4 = Node((1, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -456,11 +456,11 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(tree.order(), [node1, node2, node3])
 
     def test_multiple_removes(self):
-        tree = binary_tree()
-        node1 = node((5, None))
-        node2 = node((10, None))
-        node3 = node((4, None))
-        node4 = node((12, None))
+        tree = BinaryTree()
+        node1 = Node((5, None))
+        node2 = Node((10, None))
+        node3 = Node((4, None))
+        node4 = Node((12, None))
         tree.insert(node1)
         tree.insert(node2)
         tree.insert(node3)
@@ -512,4 +512,4 @@ class UnitTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()

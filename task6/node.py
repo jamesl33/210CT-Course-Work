@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-class node:
+class Node:
     def __init__(self, value):
         self.value = value[0]
         self.owner = value[1]

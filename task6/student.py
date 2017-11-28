@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-class student:
+class Student:
     def __init__(self, unique_id, name, date_of_birth, address, enrolment_date, class_id, postgraduate):
         self.data = {}
         self.data['unique_id'] = unique_id

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-class address:
+class Address:
     def __init__(self, house_num, street_name):
         self.house_num = house_num
         self.street_name = street_name

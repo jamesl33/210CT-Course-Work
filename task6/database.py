@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 
-import tree
 
-class database:
+from binary_tree import BinaryTree
+from node import Node
+
+
+class Database:
     def __init__(self, students):
         self.data = {}
 
         for student in students:
             for value in student.data:
-                new_node = tree.node((student.data[value], student))
+                new_node = Node((student.data[value], student))
                 if value in self.data:
                     self.data[value].insert(new_node)
                 else:
-                    self.data[value] = tree.binary_tree()
+                    self.data[value] = BinaryTree()
                     self.data[value].insert(new_node)
 
     def convert_node_list(self, node_list):
