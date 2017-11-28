@@ -57,7 +57,7 @@ class UnitTest(unittest.TestCase):
         tree.insert(node2)
         tree.insert(node3)
         tree.insert(node4)
-        self.assertEqual(tree.min_right(), node4)
+        self.assertEqual(tree._min_right(), node4)
 
     def test_count_children(self):
         tree = BinaryTree()
@@ -69,8 +69,8 @@ class UnitTest(unittest.TestCase):
         tree.insert(node2)
         tree.insert(node3)
         tree.insert(node4)
-        self.assertEqual(tree.count_children(node2), 2)
-        self.assertEqual(tree.count_children(node1), 1)
+        self.assertEqual(tree._count_children(node2), 2)
+        self.assertEqual(tree._count_children(node1), 1)
 
     def test_remove_leaf(self):
         tree = BinaryTree()

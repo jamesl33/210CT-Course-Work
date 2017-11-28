@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+""" node.py: Contains the node class which is used in the simple database and binary trees
+"""
+
 
 class Node:
+    """Node: Simple node class used in the binary trees
+    """
     def __init__(self, value):
         self.value = value[0]
         self.owner = value[1]

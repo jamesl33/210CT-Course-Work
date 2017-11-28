@@ -8,11 +8,11 @@ from address import Address
 
 class UnitTest(unittest.TestCase):
     def setUp(self):
-        self.student1 = Student(1, "Ryan", datetime.date(1978, 1, 12), "104, Main Street", datetime.date(2017, 3, 9), "220CT", True)
-        self.student2 = Student(2, "Devin", datetime.date(2000, 1, 12), "10, Station Road", datetime.date(2017, 3, 9), "121COM", False)
-        self.student3 = Student(3, "Rob", datetime.date(2002, 4, 2), "1, Lunch Lane", datetime.date(2017, 3, 9), "290COM", True)
-        self.student4 = Student(4, "Ellen", datetime.date(1997, 1, 12), "23, Lovelace Avenue", datetime.date(2017, 3, 9), "290COM", False)
-        self.student5 = Student(5, "Taylor", datetime.date(1995, 5, 9), "3, Judas Lane", datetime.date(2017, 3, 9), "220CT", True)
+        self.student1 = Student(1, "Ryan", datetime.date(1978, 1, 12), Address(104, 'Main Street'), datetime.date(2017, 3, 9), "220CT", True)
+        self.student2 = Student(2, "Devin", datetime.date(2000, 1, 12), Address(10, 'Station Road'), datetime.date(2017, 3, 9), "121COM", False)
+        self.student3 = Student(3, "Rob", datetime.date(2002, 4, 2), Address(1, 'Lunch Lane'), datetime.date(2017, 3, 9), "290COM", True)
+        self.student4 = Student(4, "Ellen", datetime.date(1997, 1, 12), Address(23, 'Lovelace Avenue'), datetime.date(2017, 3, 9), "290COM", False)
+        self.student5 = Student(5, "Taylor", datetime.date(1995, 5, 9), Address(3, 'Judas Lane'), datetime.date(2017, 3, 9), "220CT", True)
         self.students = [self.student3, self.student2, self.student4, self.student1, self.student5]
         self.db = Database(self.students)
 

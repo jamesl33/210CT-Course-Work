@@ -2,6 +2,9 @@
 
 class Address:
     def __init__(self, house_num, street_name):
+        assert isinstance(house_num, int)
+        assert isinstance(street_name, str)
+
         self.house_num = house_num
         self.street_name = street_name
 
