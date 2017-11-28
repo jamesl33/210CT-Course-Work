@@ -5,8 +5,8 @@ class node:
         self.value = value[0]
         self.owner = value[1]
         self.parent = None
-        self.leftNode = None
-        self.rightNode = None
+        self.left_node = None
+        self.right_node = None
 
     def __ne__(self, other):
         try:

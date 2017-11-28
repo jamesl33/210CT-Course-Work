@@ -14,16 +14,16 @@ class UnitTest(unittest.TestCase):
 
     def test_finding_student_by_id(self):
         correct = [self.student3]
-        self.assertEqual(self.db.find(3, 'uniqueId'), correct)
+        self.assertEqual(self.db.find(3, 'unique_id'), correct)
 
     def test_find_and_update_by_id(self):
-        self.db.update('220CT', 'classId', '210CT')
-        self.assertEqual(self.student1.data['classId'], '210CT')
-        self.assertEqual(self.student5.data['classId'], '210CT')
+        self.db.update('220CT', 'class_id', '210CT')
+        self.assertEqual(self.student1.data['class_id'], '210CT')
+        self.assertEqual(self.student5.data['class_id'], '210CT')
 
     def test_finding_student_by_class(self):
         correct = [self.student1, self.student5]
-        self.assertEqual(self.db.find('220CT', 'classId'), correct)
+        self.assertEqual(self.db.find('220CT', 'class_id'), correct)
 
     def test_list_names_in_lex_order(self):
         correct = ['Devin', 'Ellen', 'Rob', 'Ryan', 'Taylor']
@@ -38,7 +38,7 @@ class UnitTest(unittest.TestCase):
     def test_list_undergrads_by_class_in_lex_order(self):
         lex = []
         students = self.db.find('all', 'name')
-        classes = self.db.find('all', 'classId')
+        classes = self.db.find('all', 'class_id')
         for i in range(len(students)):
             for j in range(len(classes)):
                 if students[i].owner == classes[j].owner:
@@ -55,12 +55,12 @@ class UnitTest(unittest.TestCase):
         students = [student5, student3, student4, student2, student1]
         db = database.database(students)
         db.remove_by_id(1)
-        self.assertEqual(db.data['uniqueId'].order(True), ['2', '3', '4', '5'])
+        self.assertEqual(db.data['unique_id'].order(True), ['2', '3', '4', '5'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen', 'Rob', 'Taylor'])
-        self.assertEqual(db.data['dateOfBirth'].order(True), ['1995-05-09', '1997-01-12', '2000-01-12', '2002-04-02'])
+        self.assertEqual(db.data['date_of_birth'].order(True), ['1995-05-09', '1997-01-12', '2000-01-12', '2002-04-02'])
         self.assertEqual(db.data['address'].order(True), ['1 Lunch Lane', '1 Lunch Lane', '3 Judas Lane', '10 Station Road'])
-        self.assertEqual(db.data['enrolmentDate'].order(True), ['2013-03-09', '2017-03-04', '2017-03-09', '2017-04-09'])
-        self.assertEqual(db.data['classId'].order(True), ['210CT', '210CT', '220CT', '290COM'])
+        self.assertEqual(db.data['enrolment_date'].order(True), ['2013-03-09', '2017-03-04', '2017-03-09', '2017-04-09'])
+        self.assertEqual(db.data['class_id'].order(True), ['210CT', '210CT', '220CT', '290COM'])
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False', 'True', 'True'])
 
     def test_remove_by_postgraduate(self):
@@ -75,34 +75,35 @@ class UnitTest(unittest.TestCase):
         db = database.database(students)
 
         postGrads = db.find(True, 'postgraduate')
-        db.remove_by_id(postGrads[0].data['uniqueId'])
+        db.remove_by_id(postGrads[0].data['unique_id'])
 
-        self.assertEqual(db.data['uniqueId'].order(True), ['1', '2', '3', '4'])
+        self.assertEqual(db.data['unique_id'].order(True), ['1', '2', '3', '4'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen', 'Rob', 'Ryan'])
-        self.assertEqual(db.data['dateOfBirth'].order(True), ['1978-01-12', '1997-01-12', '2000-01-12', '2002-04-02'])
+        self.assertEqual(db.data['date_of_birth'].order(True), ['1978-01-12', '1997-01-12', '2000-01-12', '2002-04-02'])
         self.assertEqual(db.data['address'].order(True), ['1 Lunch Lane', '1 Lunch Lane', '10 Station Road', '104 Main Street'])
-        self.assertEqual(db.data['enrolmentDate'].order(True), ['2013-03-09', '2017-02-09', '2017-03-04', '2017-03-09'])
-        self.assertEqual(db.data['classId'].order(True), ['210CT', '210CT', '220CT', '290COM'])
+        self.assertEqual(db.data['enrolment_date'].order(True), ['2013-03-09', '2017-02-09', '2017-03-04', '2017-03-09'])
+        self.assertEqual(db.data['class_id'].order(True), ['210CT', '210CT', '220CT', '290COM'])
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False', 'True', 'True'])
 
-        db.remove_by_id(postGrads[1].data['uniqueId'])
+        db.remove_by_id(postGrads[1].data['unique_id'])
 
-        self.assertEqual(db.data['uniqueId'].order(True), ['1', '2', '4'])
+        self.assertEqual(db.data['unique_id'].order(True), ['1', '2', '4'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen', 'Ryan'])
-        self.assertEqual(db.data['dateOfBirth'].order(True), ['1978-01-12', '1997-01-12', '2000-01-12'])
+        self.assertEqual(db.data['date_of_birth'].order(True), ['1978-01-12', '1997-01-12', '2000-01-12'])
         self.assertEqual(db.data['address'].order(True), ['1 Lunch Lane', '10 Station Road', '104 Main Street'])
-        self.assertEqual(db.data['enrolmentDate'].order(True), ['2013-03-09', '2017-02-09', '2017-03-09'])
-        self.assertEqual(db.data['classId'].order(True), ['210CT', '220CT', '290COM'])
+        self.assertEqual(db.data['enrolment_date'].order(True), ['2013-03-09', '2017-02-09', '2017-03-09'])
+        self.assertEqual(db.data['class_id'].order(True), ['210CT', '220CT', '290COM'])
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False', 'True'])
 
-        db.remove_by_id(postGrads[2].data['uniqueId'])
-        self.assertEqual(db.data['uniqueId'].order(True), ['2', '4'])
+        db.remove_by_id(postGrads[2].data['unique_id'])
+        self.assertEqual(db.data['unique_id'].order(True), ['2', '4'])
         self.assertEqual(db.data['name'].order(True), ['Devin', 'Ellen'])
-        self.assertEqual(db.data['dateOfBirth'].order(True), ['1997-01-12', '2000-01-12'])
+        self.assertEqual(db.data['date_of_birth'].order(True), ['1997-01-12', '2000-01-12'])
         self.assertEqual(db.data['address'].order(True), ['1 Lunch Lane', '10 Station Road'])
-        self.assertEqual(db.data['enrolmentDate'].order(True), ['2013-03-09', '2017-03-09'])
-        self.assertEqual(db.data['classId'].order(True), ['210CT', '290COM'])
+        self.assertEqual(db.data['enrolment_date'].order(True), ['2013-03-09', '2017-03-09'])
+        self.assertEqual(db.data['class_id'].order(True), ['210CT', '290COM'])
         self.assertEqual(db.data['postgraduate'].order(True), ['False', 'False'])
+
 
 if __name__ == '__main__':
     unittest.main()
