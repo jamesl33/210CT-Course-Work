@@ -11,11 +11,12 @@ def main():
     array = create_array(8, 8)
     number_set = find_largest_set(array)
 
-    for i in range(len(number_set)):
-        if not number_set[i]:
-            print("There are no sets of numbers in this matrix")
-        print("{0}. Number/Color = {1}\n   Set = {2}\n".format(i + 1, array[number_set[i][0][0]]
-                                                               [number_set[i][0][1]], number_set[i]))
+    for index, number in enumerate(number_set):
+        if not number:
+            print('There are no sets of numbers in the matrix')
+        print('{0}. Number/Color = {1}\n   Set = {2}\n'.format(index + 1,
+                                                               array[number[0][0]][number[0][1]],
+                                                               number))
 
 
 main()

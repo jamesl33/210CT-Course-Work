@@ -10,10 +10,7 @@ def calc_height(stacked_list):
     :returns height: height of stacked cubes
     """
     assert isinstance(stacked_list, list)
-    height = 0
-    for cube in stacked_list:
-        height += cube.edge_length
-    return 'The maximum tower height is {0}'.format(height)
+    return 'The maximum tower height is {0}'.format(sum([i.edge_length for i in stacked_list]))
 
 
 def widest_cube(cube_list, stacked_list):

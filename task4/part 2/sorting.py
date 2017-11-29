@@ -11,14 +11,14 @@ def quick_sort(array):
     """
     assert isinstance(array, list)
     less_list, greater_list, equal_list = [], [], []
-    if len(array) > 1:
-        pivot_point = array[-1]
-        for item in array:
-            if item == pivot_point:
-                equal_list.append(item)
-            elif item < pivot_point:
-                less_list.append(item)
-            else:
-                greater_list.append(item)
-        return quick_sort(less_list) + equal_list + quick_sort(greater_list)
-    return array
+    if len(array) <= 1:
+        return array
+    pivot_point = array[len(array) // 2]
+    for item in array:
+        if item == pivot_point:
+            equal_list.append(item)
+        elif item < pivot_point:
+            less_list.append(item)
+        else:
+            greater_list.append(item)
+    return quick_sort(less_list) + equal_list + quick_sort(greater_list)

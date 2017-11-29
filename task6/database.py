@@ -28,13 +28,6 @@ class Database:
                     self.data[value] = BinaryTree()
                     self.data[value].insert(new_node)
 
-    def convert_node_list(self, node_list):
-        """convert_node_list: Convert a list of nodes into a list of their owners
-
-        :param node_list: List to change
-        """
-        return [node.owner for node in node_list]
-
     def find(self, target, where):
         """find: Search the database. Has simmilar structure as 'SQLite3'
 
@@ -47,7 +40,7 @@ class Database:
             return self.data[where].order()
 
         assert self.data[where].type == type(target)
-        return self.convert_node_list(self.data[where].find(target))
+        return self._convert_node_list(self.data[where].find(target))
 
     def remove_by_id(self, target_id):
         """remove_by_id: Remove something from the database by id
@@ -80,3 +73,11 @@ class Database:
         :param where: Where you want to show the records for
         """
         return self.data[where].order(True)
+
+    @classmethod
+    def _convert_node_list(cls, node_list):
+        """_convert_node_list: Convert a list of nodes into a list of their owners
+
+        :param node_list: List to change
+        """
+        return [node.owner for node in node_list]

@@ -6,25 +6,27 @@ of numbers in a matrix of integers
 import numpy as np
 
 
-def check_if_set(array, pos_x, pos_y, visited=[]):
+def check_if_set(array, pos_x, pos_y):
     """check_if_set: Recursive method to check if the position (x, y) is included in a set.
 
     :param array: Matrix in which we are checking for sets
     :param pos_x: Int representing x coord
     :param pos_y: Int representing y coord
-    :param visited: List containing visited coords
     :returns list: List of visited coords
     """
-    assert isinstance(array, np.ndarray)
+    assert isinstance(array, np.ndarray, list)
     assert isinstance(pos_x, int)
     assert isinstance(pos_y, int)
-    assert isinstance(visited, list)
-    neighbours = check_neighbours(array, pos_x, pos_y)
-    for pos_i, pos_j in neighbours:
-        if (pos_i, pos_j) not in visited:
-            visited.append((pos_i, pos_j))
-            check_if_set(array, pos_i, pos_j, visited)
-    return visited
+
+    def _check_if_set(array, pos_x, pos_y, visited):
+        neighbours = check_neighbours(array, pos_x, pos_y)
+        for pos_i, pos_j in neighbours:
+            if (pos_i, pos_j) not in visited:
+                visited.append((pos_i, pos_j))
+                _check_if_set(array, pos_i, pos_j, visited)
+        return visited
+
+    return _check_if_set(array, pos_x, pos_y, [])
 
 
 def check_neighbours(array, pos_x, pos_y):
@@ -34,7 +36,7 @@ def check_neighbours(array, pos_x, pos_y):
     :param pos_x: Int representing x coord
     :param pos_y: Int representing y coord
     """
-    assert isinstance(array, np.ndarray)
+    assert isinstance(array, np.ndarray, list)
     assert isinstance(pos_x, int)
     assert isinstance(pos_y, int)
     neighbours = []
@@ -67,7 +69,7 @@ def get_all_sets(array):
     all_sets = []
     for i in range(array.shape[0]):
         for j in range(array.shape[1]):
-            all_sets.append(check_if_set(array, i, j, []))
+            all_sets.append(check_if_set(array, i, j))
     return all_sets
 
 

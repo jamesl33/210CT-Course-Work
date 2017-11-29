@@ -17,12 +17,12 @@ def get_diagonal(array, offset=0):
     assert offset <= len(array)
     assert offset >= -len(array)
     lst = []
-    for i in range(len(array)):
+    for index in range(len(array)):
         try:
             if offset > 0:
-                lst.append(array[i + offset][i])
+                lst.append(array[index + offset][index])
             else:
-                lst.append(array[i][i + abs(offset)])
+                lst.append(array[index][index + abs(offset)])
         except IndexError:
             pass
     return lst
@@ -53,5 +53,4 @@ def smallest_sum_in_array(array, size):
     assert isinstance(array, list)
     assert isinstance(size, int)
     array.sort()
-    array = array[:size]
-    return sum(array)
+    return sum(array[:size])

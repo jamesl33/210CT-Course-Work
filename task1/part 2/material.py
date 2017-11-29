@@ -17,7 +17,6 @@ class Material:
         self.quantity = quantity
 
     def decriment(self):
-        """decriment"""
         self.quantity -= 1
 
     def __gt__(self, other):

@@ -16,8 +16,8 @@ def main():
     array = np.random.random_integers(1, 9, size=(array_size, array_size))
     diagonals = get_all_diagonals(array, diagonal_size)
 
-    for i in range(len(diagonals)):
-        diagonals[i] = smallest_sum_in_array(diagonals[i], diagonal_size)
+    for index, diagonal in enumerate(diagonals):
+        diagonals[index] = smallest_sum_in_array(diagonal, diagonal_size)
 
     print(array)
     print('Answer: {0}'.format(min(diagonals)))

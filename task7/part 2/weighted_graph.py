@@ -76,13 +76,7 @@ class WeightedGraph(Graph):
         """
         assert isinstance(start, int)
         assert isinstance(end, int)
-
-        def _invert():
-            for weight in self.weights:
-                self.weights[weight] = self.weights[weight] * -1
-        _invert()
         distance, path = self._belmon_ford(start, end)
-        _invert()
         if math.isinf(distance):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
         return 'Path: {0}\nDistance traveled: {1}'.format(path, distance * -1)
@@ -106,8 +100,6 @@ class WeightedGraph(Graph):
         :return list: list containing the shortest hamiltonian path if there is multiple of
         the same length they are all returned
         """
-        cycles = self.get_hamiltonian_cycles()
-
         def _path_cost(path):
             cost = 0
             for index, vertex in enumerate(path):
@@ -118,6 +110,7 @@ class WeightedGraph(Graph):
             return path, cost
 
         costs = []
+        cycles = self.get_hamiltonian_cycles()
         for cycle in cycles:
             costs.append(_path_cost(cycle))
 
@@ -149,15 +142,17 @@ class WeightedGraph(Graph):
 
             for vertex in self.vertices and self.edges:
                 for neighbour in self.edges[vertex]:
-                    if distances[neighbour] > distances[vertex] + self.weights[(vertex, neighbour)]:
-                        distances[neighbour] = distances[vertex] + self.weights[(vertex, neighbour)]
+                    if distances[neighbour] > distances[vertex] + \
+                            (self.weights[(vertex, neighbour)] * -1):
+                        distances[neighbour] = distances[vertex] + \
+                            (self.weights[(vertex, neighbour)] * -1)
                         predecessors[neighbour] = vertex
 
             for vertex in self.vertices and self.edges:
                 for neighbour in self.edges:
                     if (vertex, neighbour) in self.weights:
                         if distances[neighbour] > distances[vertex] + \
-                                self.weights[(vertex, neighbour)]:
+                                (self.weights[(vertex, neighbour)] * -1):
                             raise TypeError('This graph contains a negative cycle')
             return distances[end], self._short_path(predecessors, end)
 

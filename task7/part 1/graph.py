@@ -46,13 +46,6 @@ class Graph:
 
         return _is_connected(visited, start)
 
-    def display(self):
-        """display
-        Displays the graphs values in a neat way on a per vertex basis
-        """
-        for vertex in self.vertices:
-            print('{0}: {1}'.format(vertex, self.edges[vertex]))
-
     def add_node(self, target_node):
         """add_node
 

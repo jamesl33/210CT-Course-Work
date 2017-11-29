@@ -7,15 +7,22 @@ import random
 from sorting import quick_sort
 
 
+def ordinal(num):
+    """ordinal: Generate an ordinal number representation of 'num'
+
+    :param num: Integer which you want the ordinal representation of
+    """
+    if num >= 10 and num <= 20:
+        suffix = 'th'
+    else:
+        suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(num % 10, 'th')
+    return str(num) + suffix
+
+
 def main():
     """ generate an array of length '10' sort it and as the user which element they would like """
 
-    ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4]) # https://codegolf.stackexchange.com/questions/4707/outputting-ordinal-numbers-1st-2nd-3rd#answer-4712
-
-    unsorted_array = []
-    for i in range(10):
-        unsorted_array.append(random.randint(1, 1000))
-    sorted_array = quick_sort(unsorted_array)
+    sorted_array = quick_sort([random.randint(1, 1000) for i in range(10)])
 
     while True:
         try:
@@ -26,10 +33,15 @@ def main():
 
     print("{0}".format(sorted_array))
 
-    if element > len(sorted_array) // 2:
-        print('The {0} largest element is {1}'.format(ordinal(element), sorted_array[element - 1]))
-    else:
-        print('The {0} smallest element is {1}'.format(ordinal(element), sorted_array[element - 1]))
+    try:
+        if element > len(sorted_array) // 2:
+            print('The {0} largest element is {1}'.format(ordinal(element),
+                                                          sorted_array[element - 1]))
+        else:
+            print('The {0} smallest element is {1}'.format(ordinal(element),
+                                                           sorted_array[element - 1]))
+    except IndexError:
+        raise IndexError('Index is not in list')
 
 
 main()
