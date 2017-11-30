@@ -14,7 +14,7 @@ def check_if_set(array, pos_x, pos_y):
     :param pos_y: Int representing y coord
     :returns list: List of visited coords
     """
-    assert isinstance(array, np.ndarray, list)
+    assert isinstance(array, (np.ndarray, list))
     assert isinstance(pos_x, int)
     assert isinstance(pos_y, int)
 
@@ -36,7 +36,7 @@ def check_neighbours(array, pos_x, pos_y):
     :param pos_x: Int representing x coord
     :param pos_y: Int representing y coord
     """
-    assert isinstance(array, np.ndarray, list)
+    assert isinstance(array, (np.ndarray, list))
     assert isinstance(pos_x, int)
     assert isinstance(pos_y, int)
     neighbours = []

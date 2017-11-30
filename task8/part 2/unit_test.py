@@ -46,7 +46,8 @@ class UnitTest(unittest.TestCase):
 
     def test_wiki_ham_cycle(self):
         """test_wiki_ham_cycle: This is the graph taken from wikipedia
-        <https://en.wikipedia.org/wiki/Hamiltonian_path>.
+        <https://en.wikipedia.org/wiki/Hamiltonian_path> and is also in this folder as a png called
+        'HamCycle.png'
         This is the function which is making the unit test take a while becuase this
         the Hamiltonian path problem is NP-Complete
         """
@@ -83,13 +84,14 @@ class UnitTest(unittest.TestCase):
         for cycle in cycles:
             self.assertEqual(len(set(cycle)), 20)
 
-        self.assertTrue([[0, 4, 3, 2, 1, 7, 13, 8, 14, 9, 10, 5, 11, 19, 15, 16, 17, 18, 12, 6, 0]]
+        self.assertTrue([0, 4, 3, 2, 1, 7, 13, 8, 14, 9, 10, 5, 11, 19, 15, 16, 17, 18, 12, 6, 0]
                         in cycles)
 
     def test_wiki_no_ham_cycle(self):
         """test_wiki_no_ham_cycle: This is also a graph taken from wikipedia
         <https://en.wikipedia.org/wiki/Hamiltonian_path> and there is no
-        Hamiltonian cycles in this graph
+        Hamiltonian cycles in this graph. This graph is also in included in this
+        folder as a png called 'NoHamCycle.png'
         """
         node0 = Node(0, [7, 8, 10, 9])
         node1 = Node(1, [5, 6, 7, 10])
