@@ -69,14 +69,14 @@ class WeightedGraph(Graph):
         return top_order
 
     def longest_path(self, start, end):
-        """longest_path: Uses _belmon_ford to calculate longest path by negating weights
+        """longest_path: Uses _bellman_ford to calculate longest path by negating weights
 
         :param start: Integer representing the start node
         :param end: Integer representing the end node
         """
         assert isinstance(start, int)
         assert isinstance(end, int)
-        distance, path = self._belmon_ford(start, end)
+        distance, path = self._bellman_ford(start, end)
         if math.isinf(distance):
             raise ValueError('There is no path from {0} to {1}'.format(start, end))
         return 'Path: {0}\nDistance traveled: {1}'.format(path, distance * -1)
@@ -126,8 +126,8 @@ class WeightedGraph(Graph):
 
         return minimum_cycle
 
-    def _belmon_ford(self, start, end):
-        """_belmon_ford: Use Belmon ford to calculate the longest path. This is needed because
+    def _bellman_ford(self, start, end):
+        """_bellman_ford: Use Belmon ford to calculate the longest path. This is needed because
         Dijkstra's weights must be non-negative
 
         :param start: Integer representing the start node

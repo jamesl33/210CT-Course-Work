@@ -85,7 +85,7 @@ class UnitTest(unittest.TestCase):
 
     def test_longest_path(self):
         """test_longest_path: Test that the longest path is correctly generated using
-        the '_belmon_ford' function
+        the '_bellman_ford' function
         """
         node_0 = WeightedNode(0, [1, 4], {(0, 1): 1, (0, 4): 11})
         node_1 = WeightedNode(1, [2], {(1, 2): 2})
